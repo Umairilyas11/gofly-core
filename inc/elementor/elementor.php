@@ -181,6 +181,7 @@ if (!class_exists('Egns_Elementor')) {
 				'tour-check-avilability',
 				'tour-gallery',
 				'tour-pricing-bar',
+				'tour-social-share',
 				// Visa Single 
 				'visa-critaria-tab',
 				// Experience Single 

@@ -9,145 +9,103 @@ use Elementor\Group_Control_Typography;
 
 class Gofly_Tour_Gallery_Widget extends Widget_Base
 {
-    public function get_name()
-    {
-        return 'gofly_tour_gallery';
-    }
-
-    public function get_title()
-    {
-        return esc_html__('EG Tour Gallery', 'gofly-core');
-    }
-
-    public function get_icon()
-    {
-        return 'egns-widget-icon';
-    }
-
-    public function get_categories()
-    {
-        return ['gofly_tour'];
-    }
+    public function get_name()   { return 'gofly_tour_gallery'; }
+    public function get_title()  { return esc_html__('EG Tour Gallery', 'gofly-core'); }
+    public function get_icon()   { return 'egns-widget-icon'; }
+    public function get_categories() { return ['gofly_tour']; }
 
     protected function register_controls()
     {
         // ===================== Content ===================== //
-        $this->start_controls_section(
-            'gofly_tour_gallery_content_section',
-            [
-                'label' => esc_html__('Content', 'gofly-core'),
-            ]
-        );
+        $this->start_controls_section('gofly_tour_gallery_content_section', ['label' => esc_html__('Content', 'gofly-core')]);
 
-        $this->add_control(
-            'tour_gallery_panel_notice',
-            [
-                'type'        => \Elementor\Controls_Manager::NOTICE,
-                'notice_type' => 'warning',
-                'dismissible' => true,
-                'heading'     => esc_html__('Notice', 'gofly-core'),
-                'content'     => esc_html__('This widget is only for the Tour single/details page.', 'gofly-core'),
-            ]
-        );
+        $this->add_control('tour_gallery_panel_notice', [
+            'type' => \Elementor\Controls_Manager::NOTICE, 'notice_type' => 'warning', 'dismissible' => true,
+            'heading' => esc_html__('Notice', 'gofly-core'),
+            'content' => esc_html__('This widget is only for the Tour single/details page.', 'gofly-core'),
+        ]);
 
-        $this->add_control(
-            'gofly_tour_gallery_view_all_label',
-            [
-                'label'       => esc_html__('View All Label', 'gofly-core'),
-                'type'        => \Elementor\Controls_Manager::TEXT,
-                'default'     => esc_html__('View All Media', 'gofly-core'),
-                'label_block' => true,
-            ]
-        );
+        $this->add_control('gofly_tour_gallery_view_all_label', [
+            'label' => esc_html__('View All Label', 'gofly-core'),
+            'type'  => \Elementor\Controls_Manager::TEXT,
+            'default' => esc_html__('View All Media', 'gofly-core'),
+            'label_block' => true,
+        ]);
 
-        $this->add_control(
-            'gofly_tour_gallery_show_view_all',
-            [
-                'label'        => esc_html__('Show View All Button', 'gofly-core'),
-                'type'         => \Elementor\Controls_Manager::SWITCHER,
-                'label_on'     => esc_html__('Show', 'gofly-core'),
-                'label_off'    => esc_html__('Hide', 'gofly-core'),
-                'return_value' => 'yes',
-                'default'      => 'yes',
-            ]
-        );
+        $this->add_control('gofly_tour_gallery_show_view_all', [
+            'label' => esc_html__('Show View All Button', 'gofly-core'),
+            'type'  => \Elementor\Controls_Manager::SWITCHER,
+            'label_on' => esc_html__('Show', 'gofly-core'), 'label_off' => esc_html__('Hide', 'gofly-core'),
+            'return_value' => 'yes', 'default' => 'yes',
+        ]);
 
-        $this->add_control(
-            'gofly_tour_gallery_aspect_ratio',
-            [
-                'label'   => esc_html__('Main Image Height (px)', 'gofly-core'),
-                'type'    => Controls_Manager::NUMBER,
-                'default' => 430,
-                'min'     => 200,
-                'max'     => 800,
-            ]
-        );
+        $this->add_control('gofly_tour_gallery_aspect_ratio', [
+            'label' => esc_html__('Main Image Height (px)', 'gofly-core'),
+            'type'  => Controls_Manager::NUMBER,
+            'default' => 430, 'min' => 200, 'max' => 800,
+        ]);
+
+        $this->add_control('gofly_tour_gallery_autoplay', [
+            'label' => esc_html__('Autoplay', 'gofly-core'),
+            'type'  => \Elementor\Controls_Manager::SWITCHER,
+            'label_on' => esc_html__('On', 'gofly-core'), 'label_off' => esc_html__('Off', 'gofly-core'),
+            'return_value' => 'yes', 'default' => 'yes',
+        ]);
+
+        $this->add_control('gofly_tour_gallery_autoplay_speed', [
+            'label'     => esc_html__('Autoplay Interval (ms)', 'gofly-core'),
+            'type'      => Controls_Manager::NUMBER,
+            'default'   => 4000, 'min' => 1000, 'max' => 15000, 'step' => 500,
+            'condition' => ['gofly_tour_gallery_autoplay' => 'yes'],
+        ]);
 
         $this->end_controls_section();
 
         // ===================== Style ===================== //
-        $this->start_controls_section(
-            'gofly_tour_gallery_style_section',
-            [
-                'label' => esc_html__('Gallery Style', 'gofly-core'),
-                'tab'   => Controls_Manager::TAB_STYLE,
-            ]
-        );
+        $this->start_controls_section('gofly_tour_gallery_style_section', [
+            'label' => esc_html__('Gallery Style', 'gofly-core'),
+            'tab'   => Controls_Manager::TAB_STYLE,
+        ]);
 
-        $this->add_responsive_control(
-            'gofly_tour_gallery_border_radius',
-            [
-                'label'      => esc_html__('Main Image Border Radius', 'gofly-core'),
-                'type'       => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
-                'selectors'  => [
-                    '{{WRAPPER}} .eg-tour-gallery-main-img img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
+        $this->add_responsive_control('gofly_tour_gallery_border_radius', [
+            'label' => esc_html__('Image Border Radius', 'gofly-core'),
+            'type'  => Controls_Manager::DIMENSIONS, 'size_units' => ['px', '%'],
+            'selectors' => [
+                '{{WRAPPER}} .eg-tg-slide img'  => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                '{{WRAPPER}} .eg-tg-main-wrap'  => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+        ]);
 
-        $this->add_control(
-            'gofly_tour_gallery_arrow_bg_color',
-            [
-                'label'     => esc_html__('Arrow Background', 'gofly-core'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .eg-tour-gallery-nav-btn' => 'background-color: {{VALUE}};',
-                ],
-            ]
-        );
+        $this->add_control('gofly_tour_gallery_arrow_bg_color', [
+            'label' => esc_html__('Arrow Background', 'gofly-core'), 'type' => Controls_Manager::COLOR,
+            'selectors' => ['{{WRAPPER}} .eg-tg-nav-btn' => 'background-color: {{VALUE}} !important;'],
+        ]);
 
-        $this->add_control(
-            'gofly_tour_gallery_arrow_color',
-            [
-                'label'     => esc_html__('Arrow Color', 'gofly-core'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .eg-tour-gallery-nav-btn svg' => 'fill: {{VALUE}};',
-                ],
-            ]
-        );
+        $this->add_control('gofly_tour_gallery_arrow_color', [
+            'label' => esc_html__('Arrow Color', 'gofly-core'), 'type' => Controls_Manager::COLOR,
+            'selectors' => ['{{WRAPPER}} .eg-tg-nav-btn svg path' => 'stroke: {{VALUE}} !important;'],
+        ]);
 
-        $this->add_control(
-            'gofly_tour_gallery_view_all_color',
-            [
-                'label'     => esc_html__('View All Text Color', 'gofly-core'),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .eg-tour-gallery-view-all' => 'color: {{VALUE}};',
-                    '{{WRAPPER}} .eg-tour-gallery-view-all svg' => 'fill: {{VALUE}};',
-                ],
-            ]
-        );
+        $this->add_control('gofly_tour_gallery_dot_color', [
+            'label' => esc_html__('Dot Color (inactive)', 'gofly-core'), 'type' => Controls_Manager::COLOR,
+            'selectors' => ['{{WRAPPER}} .eg-tg-dot' => 'background: {{VALUE}};'],
+        ]);
 
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name'     => 'gofly_tour_gallery_view_all_typ',
-                'label'    => esc_html__('View All Typography', 'gofly-core'),
-                'selector' => '{{WRAPPER}} .eg-tour-gallery-view-all',
-            ]
-        );
+        $this->add_control('gofly_tour_gallery_dot_active_color', [
+            'label' => esc_html__('Dot Color (active)', 'gofly-core'), 'type' => Controls_Manager::COLOR,
+            'selectors' => ['{{WRAPPER}} .eg-tg-dot.active' => 'background: {{VALUE}};'],
+        ]);
+
+        $this->add_control('gofly_tour_gallery_view_all_color', [
+            'label' => esc_html__('View All Text Color', 'gofly-core'), 'type' => Controls_Manager::COLOR,
+            'selectors' => ['{{WRAPPER}} .eg-tg-view-all' => 'color: {{VALUE}};'],
+        ]);
+
+        $this->add_group_control(Group_Control_Typography::get_type(), [
+            'name'     => 'gofly_tour_gallery_view_all_typ',
+            'label'    => esc_html__('View All Typography', 'gofly-core'),
+            'selector' => '{{WRAPPER}} .eg-tg-view-all',
+        ]);
 
         $this->end_controls_section();
     }
@@ -157,189 +115,163 @@ class Gofly_Tour_Gallery_Widget extends Widget_Base
         $settings  = $this->get_settings_for_display();
         $id        = get_the_ID();
         $main_h    = !empty($settings['gofly_tour_gallery_aspect_ratio']) ? intval($settings['gofly_tour_gallery_aspect_ratio']) : 430;
+        $autoplay  = ($settings['gofly_tour_gallery_autoplay'] ?? 'yes') === 'yes';
+        $ap_speed  = !empty($settings['gofly_tour_gallery_autoplay_speed']) ? intval($settings['gofly_tour_gallery_autoplay_speed']) : 4000;
+        $show_all  = ($settings['gofly_tour_gallery_show_view_all'] ?? 'yes') === 'yes';
+        $view_lbl  = !empty($settings['gofly_tour_gallery_view_all_label']) ? $settings['gofly_tour_gallery_view_all_label'] : 'View All Media';
 
-        // Collect images: featured + gallery
         $images = [];
-
         if (has_post_thumbnail()) {
-            $images[] = [
-                'url'  => get_the_post_thumbnail_url($id, 'full'),
-                'alt'  => get_the_title(),
-                'thumb' => get_the_post_thumbnail_url($id, 'thumbnail'),
-            ];
+            $images[] = ['url' => get_the_post_thumbnail_url($id, 'full'), 'alt' => get_the_title()];
         }
-
         $gallery_opt = Egns_Helper::egns_get_tour_value('tour_feature_image_gallery');
         if (!empty($gallery_opt)) {
-            $gallery_ids = array_filter(array_map('trim', explode(',', $gallery_opt)));
-            foreach ($gallery_ids as $img_id) {
-                $full  = wp_get_attachment_image_url($img_id, 'full');
-                $thumb = wp_get_attachment_image_url($img_id, 'thumbnail');
-                $alt   = get_post_meta($img_id, '_wp_attachment_image_alt', true);
+            foreach (array_filter(array_map('trim', explode(',', $gallery_opt))) as $img_id) {
+                $full = wp_get_attachment_image_url($img_id, 'full');
                 if ($full) {
-                    $images[] = [
-                        'url'   => $full,
-                        'alt'   => $alt ?: get_the_title(),
-                        'thumb' => $thumb,
-                    ];
+                    $images[] = ['url' => $full, 'alt' => get_post_meta($img_id, '_wp_attachment_image_alt', true) ?: get_the_title()];
                 }
             }
         }
 
-        if (empty($images)) {
-            echo '<p>' . esc_html__('No gallery images found.', 'gofly-core') . '</p>';
-            return;
-        }
+        if (empty($images)) { echo '<p>' . esc_html__('No gallery images found.', 'gofly-core') . '</p>'; return; }
 
-        $total      = count($images);
-        $widget_id  = 'eg-tour-gallery-' . $this->get_id();
-        $show_all   = $settings['gofly_tour_gallery_show_view_all'] === 'yes';
-        $view_label = !empty($settings['gofly_tour_gallery_view_all_label']) ? $settings['gofly_tour_gallery_view_all_label'] : 'View All Media';
-?>
-        <div class="eg-tour-gallery-wrap" id="<?php echo esc_attr($widget_id); ?>">
+        $total = count($images);
+        $wid   = 'eg-tg-' . $this->get_id();
+        ?>
+<style>
+#<?php echo esc_attr($wid); ?> .eg-tg-main-wrap{position:relative;overflow:hidden;height:<?php echo $main_h; ?>px;border-radius:12px;background:#111;user-select:none}
+#<?php echo esc_attr($wid); ?> .eg-tg-slide{position:absolute;inset:0;opacity:0;transition:opacity .6s ease;pointer-events:none}
+#<?php echo esc_attr($wid); ?> .eg-tg-slide.active{opacity:1;pointer-events:auto}
+#<?php echo esc_attr($wid); ?> .eg-tg-slide img{width:100%;height:<?php echo $main_h; ?>px;object-fit:cover;display:block;border-radius:12px}
+#<?php echo esc_attr($wid); ?> .eg-tg-nav-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:10;border:none;cursor:pointer;width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.48);display:flex;align-items:center;justify-content:center;transition:background .2s}
+#<?php echo esc_attr($wid); ?> .eg-tg-nav-btn:hover{background:rgba(0,0,0,.72)}
+#<?php echo esc_attr($wid); ?> .eg-tg-prev{left:14px}
+#<?php echo esc_attr($wid); ?> .eg-tg-next{right:14px}
+#<?php echo esc_attr($wid); ?> .eg-tg-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;z-index:10}
+#<?php echo esc_attr($wid); ?> .eg-tg-dot{width:8px;height:8px;border-radius:20px;background:rgba(255,255,255,.5);cursor:pointer;transition:all .35s ease;border:none;padding:0}
+#<?php echo esc_attr($wid); ?> .eg-tg-dot.active{width:22px;background:#fff}
+#<?php echo esc_attr($wid); ?> .eg-tg-view-all{position:absolute;bottom:14px;right:16px;display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#fff;text-decoration:none;background:rgba(0,0,0,.52);border-radius:30px;padding:6px 14px;backdrop-filter:blur(4px);z-index:10;transition:background .2s}
+#<?php echo esc_attr($wid); ?> .eg-tg-view-all:hover{background:rgba(0,0,0,.75);color:#fff}
+.eg-tg-lb{display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.92);align-items:center;justify-content:center;flex-direction:column}
+.eg-tg-lb.open{display:flex}
+.eg-tg-lb-close{position:absolute;top:18px;right:22px;background:rgba(255,255,255,.12);border:none;color:#fff;font-size:22px;cursor:pointer;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.eg-tg-lb-inner{position:relative;width:90vw;max-width:960px;max-height:80vh;display:flex;align-items:center;justify-content:center}
+.eg-tg-lb-img{max-width:100%;max-height:78vh;border-radius:8px;object-fit:contain;display:block}
+.eg-tg-lb-prev,.eg-tg-lb-next{position:absolute;background:rgba(255,255,255,.15);border:none;border-radius:50%;width:42px;height:42px;cursor:pointer;color:#fff;font-size:20px;display:flex;align-items:center;justify-content:center}
+.eg-tg-lb-prev{left:-54px}.eg-tg-lb-next{right:-54px}
+.eg-tg-lb-counter{color:#bbb;margin-top:14px;font-size:13px;letter-spacing:.5px}
+</style>
 
-            <!-- Main Image -->
-            <div class="eg-tour-gallery-main" style="position:relative; overflow:hidden; height:<?php echo esc_attr($main_h); ?>px; border-radius:12px; background:#111;">
-                <?php foreach ($images as $index => $img): ?>
-                    <div class="eg-tour-gallery-slide<?php echo $index === 0 ? ' active' : ''; ?>" data-index="<?php echo esc_attr($index); ?>"
-                        style="display:<?php echo $index === 0 ? 'block' : 'none'; ?>; height:100%;">
-                        <img class="eg-tour-gallery-main-img"
-                            src="<?php echo esc_url($img['url']); ?>"
-                            alt="<?php echo esc_attr($img['alt']); ?>"
-                            style="width:100%; height:<?php echo esc_attr($main_h); ?>px; object-fit:cover; display:block;">
-                    </div>
-                <?php endforeach; ?>
-
-                <!-- Prev / Next arrows -->
-                <?php if ($total > 1): ?>
-                    <button class="eg-tour-gallery-nav-btn eg-tour-gallery-prev" aria-label="Previous"
-                        style="position:absolute; left:14px; top:50%; transform:translateY(-50%); z-index:10; border:none; cursor:pointer; width:38px; height:38px; border-radius:50%; background:rgba(0,0,0,0.45); display:flex; align-items:center; justify-content:center;">
-                        <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8.5 1L1.5 8L8.5 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
-                    <button class="eg-tour-gallery-nav-btn eg-tour-gallery-next" aria-label="Next"
-                        style="position:absolute; right:14px; top:50%; transform:translateY(-50%); z-index:10; border:none; cursor:pointer; width:38px; height:38px; border-radius:50%; background:rgba(0,0,0,0.45); display:flex; align-items:center; justify-content:center;">
-                        <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1.5 1L8.5 8L1.5 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
-                <?php endif; ?>
-
-                <!-- View All button -->
-                <?php if ($show_all && $total > 1): ?>
-                    <a href="#" class="eg-tour-gallery-view-all eg-tour-gallery-lightbox-open"
-                       style="position:absolute; bottom:16px; right:18px; display:inline-flex; align-items:center; gap:6px; font-size:14px; font-weight:600; color:#fff; text-decoration:none; background:rgba(0,0,0,0.45); border-radius:30px; padding:6px 14px; backdrop-filter:blur(4px);">
-                        <?php echo esc_html($view_label . ' ' . $total); ?>
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 7H13M7 1L13 7L7 13" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </a>
-                <?php endif; ?>
+<div id="<?php echo esc_attr($wid); ?>">
+    <div class="eg-tg-main-wrap">
+        <?php foreach ($images as $i => $img): ?>
+            <div class="eg-tg-slide<?php echo $i === 0 ? ' active' : ''; ?>" data-index="<?php echo $i; ?>">
+                <img src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt']); ?>">
             </div>
+        <?php endforeach; ?>
 
-            <!-- Thumbnails -->
-            <?php if ($total > 1): ?>
-            <div class="eg-tour-gallery-thumbs" style="display:flex; gap:8px; margin-top:10px; overflow-x:auto; padding-bottom:4px;">
-                <?php foreach ($images as $index => $img): ?>
-                    <div class="eg-tour-gallery-thumb<?php echo $index === 0 ? ' active' : ''; ?>"
-                         data-index="<?php echo esc_attr($index); ?>"
-                         style="flex:0 0 auto; cursor:pointer; border-radius:6px; overflow:hidden; border:2px solid <?php echo $index === 0 ? 'var(--primary-color1, #e8604c)' : 'transparent'; ?>; transition:border-color .2s;">
-                        <img src="<?php echo esc_url($img['thumb']); ?>"
-                             alt="<?php echo esc_attr($img['alt']); ?>"
-                             style="width:72px; height:52px; object-fit:cover; display:block;">
-                    </div>
-                <?php endforeach; ?>
-            </div>
-            <?php endif; ?>
-
-            <!-- Lightbox -->
-            <?php if ($show_all && $total > 1): ?>
-            <div class="eg-tour-gallery-lightbox" style="display:none; position:fixed; inset:0; z-index:99999; background:rgba(0,0,0,0.92); align-items:center; justify-content:center; flex-direction:column;">
-                <button class="eg-tour-gallery-lightbox-close" style="position:absolute; top:18px; right:22px; background:none; border:none; color:#fff; font-size:28px; cursor:pointer; z-index:2; line-height:1;">&times;</button>
-                <div class="eg-tour-lightbox-inner" style="position:relative; width:90vw; max-width:960px; max-height:80vh; display:flex; align-items:center; justify-content:center;">
-                    <button class="eg-tour-lightbox-prev" style="position:absolute; left:-50px; background:rgba(255,255,255,0.15); border:none; border-radius:50%; width:40px; height:40px; cursor:pointer; color:#fff; font-size:20px; display:flex; align-items:center; justify-content:center;">&#8592;</button>
-                    <img class="eg-tour-lightbox-img" src="" alt="" style="max-width:100%; max-height:78vh; border-radius:8px; object-fit:contain; display:block;">
-                    <button class="eg-tour-lightbox-next" style="position:absolute; right:-50px; background:rgba(255,255,255,0.15); border:none; border-radius:50%; width:40px; height:40px; cursor:pointer; color:#fff; font-size:20px; display:flex; align-items:center; justify-content:center;">&#8594;</button>
-                </div>
-                <div class="eg-tour-lightbox-counter" style="color:#ccc; margin-top:14px; font-size:14px;"></div>
-            </div>
-            <?php endif; ?>
+        <?php if ($total > 1): ?>
+        <button class="eg-tg-nav-btn eg-tg-prev" aria-label="<?php esc_attr_e('Previous', 'gofly-core'); ?>">
+            <svg width="10" height="16" viewBox="0 0 10 16" fill="none"><path d="M8.5 1L1.5 8L8.5 15" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="eg-tg-nav-btn eg-tg-next" aria-label="<?php esc_attr_e('Next', 'gofly-core'); ?>">
+            <svg width="10" height="16" viewBox="0 0 10 16" fill="none"><path d="M1.5 1L8.5 8L1.5 15" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="eg-tg-dots">
+            <?php for ($i = 0; $i < $total; $i++): ?>
+                <button class="eg-tg-dot<?php echo $i === 0 ? ' active' : ''; ?>" data-index="<?php echo $i; ?>" aria-label="Slide <?php echo $i + 1; ?>"></button>
+            <?php endfor; ?>
         </div>
+        <?php endif; ?>
 
-        <script>
-        (function () {
-            var wrap      = document.getElementById('<?php echo esc_js($widget_id); ?>');
-            if (!wrap) return;
+        <?php if ($show_all && $total > 1): ?>
+        <a href="#" class="eg-tg-view-all eg-tg-lb-open">
+            <?php echo esc_html($view_lbl . ' ' . $total); ?>
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <?php endif; ?>
+    </div>
 
-            var slides    = wrap.querySelectorAll('.eg-tour-gallery-slide');
-            var thumbs    = wrap.querySelectorAll('.eg-tour-gallery-thumb');
-            var prevBtn   = wrap.querySelector('.eg-tour-gallery-prev');
-            var nextBtn   = wrap.querySelector('.eg-tour-gallery-next');
-            var current   = 0;
-            var total     = slides.length;
+    <?php if ($show_all && $total > 1): ?>
+    <div class="eg-tg-lb" id="<?php echo esc_attr($wid); ?>-lb">
+        <button class="eg-tg-lb-close">&times;</button>
+        <div class="eg-tg-lb-inner">
+            <button class="eg-tg-lb-prev">&#8592;</button>
+            <img class="eg-tg-lb-img" src="" alt="">
+            <button class="eg-tg-lb-next">&#8594;</button>
+        </div>
+        <div class="eg-tg-lb-counter"></div>
+    </div>
+    <?php endif; ?>
+</div>
 
-            function goTo(idx) {
-                slides[current].style.display = 'none';
-                if (thumbs[current]) thumbs[current].style.borderColor = 'transparent';
-                current = (idx + total) % total;
-                slides[current].style.display = 'block';
-                if (thumbs[current]) {
-                    thumbs[current].style.borderColor = 'var(--primary-color1, #e8604c)';
-                    thumbs[current].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-                }
-                // sync lightbox
-                var lbImg = wrap.querySelector('.eg-tour-lightbox-img');
-                var lbCnt = wrap.querySelector('.eg-tour-lightbox-counter');
-                if (lbImg) lbImg.src = slides[current].querySelector('img').src;
-                if (lbCnt) lbCnt.textContent = (current + 1) + ' / ' + total;
-            }
+<script>
+(function(){
+    var wid=<?php echo json_encode($wid); ?>;
+    var wrap=document.getElementById(wid);
+    if(!wrap) return;
+    var slides=wrap.querySelectorAll('.eg-tg-slide');
+    var dots=wrap.querySelectorAll('.eg-tg-dot');
+    var prev=wrap.querySelector('.eg-tg-prev');
+    var next=wrap.querySelector('.eg-tg-next');
+    var cur=0,total=slides.length,timer=null;
+    var autoplay=<?php echo $autoplay ? 'true' : 'false'; ?>;
+    var apSpeed=<?php echo $ap_speed; ?>;
 
-            if (prevBtn) prevBtn.addEventListener('click', function(e){ e.preventDefault(); goTo(current - 1); });
-            if (nextBtn) nextBtn.addEventListener('click', function(e){ e.preventDefault(); goTo(current + 1); });
+    function goTo(idx){
+        slides[cur].classList.remove('active');
+        if(dots[cur]) dots[cur].classList.remove('active');
+        cur=(idx+total)%total;
+        slides[cur].classList.add('active');
+        if(dots[cur]) dots[cur].classList.add('active');
+        syncLb();
+    }
+    function syncLb(){
+        var lb=document.getElementById(wid+'-lb');
+        if(!lb) return;
+        var img=lb.querySelector('.eg-tg-lb-img');
+        var cnt=lb.querySelector('.eg-tg-lb-counter');
+        if(img) img.src=slides[cur].querySelector('img').src;
+        if(cnt) cnt.textContent=(cur+1)+' / '+total;
+    }
+    function startAp(){ if(!autoplay||total<=1) return; timer=setInterval(function(){ goTo(cur+1); },apSpeed); }
+    function stopAp(){ if(timer){ clearInterval(timer); timer=null; } }
 
-            thumbs.forEach(function(th) {
-                th.addEventListener('click', function() { goTo(parseInt(this.dataset.index)); });
-            });
+    if(prev) prev.addEventListener('click',function(e){ e.preventDefault(); stopAp(); goTo(cur-1); startAp(); });
+    if(next) next.addEventListener('click',function(e){ e.preventDefault(); stopAp(); goTo(cur+1); startAp(); });
+    dots.forEach(function(d){ d.addEventListener('click',function(){ stopAp(); goTo(parseInt(this.dataset.index)); startAp(); }); });
 
-            // Lightbox
-            var lb       = wrap.querySelector('.eg-tour-gallery-lightbox');
-            var openBtn  = wrap.querySelector('.eg-tour-gallery-lightbox-open');
-            var closeBtn = wrap.querySelector('.eg-tour-gallery-lightbox-close');
-            var lbPrev   = wrap.querySelector('.eg-tour-lightbox-prev');
-            var lbNext   = wrap.querySelector('.eg-tour-lightbox-next');
-            var lbImg    = wrap.querySelector('.eg-tour-lightbox-img');
-            var lbCnt    = wrap.querySelector('.eg-tour-lightbox-counter');
+    var mw=wrap.querySelector('.eg-tg-main-wrap');
+    var tx=0;
+    if(mw){
+        mw.addEventListener('touchstart',function(e){ tx=e.changedTouches[0].screenX; },{passive:true});
+        mw.addEventListener('touchend',function(e){ var d=tx-e.changedTouches[0].screenX; if(Math.abs(d)>40){ stopAp(); goTo(d>0?cur+1:cur-1); startAp(); } });
+    }
 
-            if (lb && openBtn) {
-                openBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    lb.style.display = 'flex';
-                    if (lbImg) lbImg.src = slides[current].querySelector('img').src;
-                    if (lbCnt) lbCnt.textContent = (current + 1) + ' / ' + total;
-                    document.body.style.overflow = 'hidden';
-                });
-                if (closeBtn) closeBtn.addEventListener('click', function() {
-                    lb.style.display = 'none';
-                    document.body.style.overflow = '';
-                });
-                lb.addEventListener('click', function(e) {
-                    if (e.target === lb) { lb.style.display = 'none'; document.body.style.overflow = ''; }
-                });
-                if (lbPrev) lbPrev.addEventListener('click', function() { goTo(current - 1); });
-                if (lbNext) lbNext.addEventListener('click', function() { goTo(current + 1); });
-
-                document.addEventListener('keydown', function(e) {
-                    if (lb.style.display !== 'flex') return;
-                    if (e.key === 'Escape') { lb.style.display = 'none'; document.body.style.overflow = ''; }
-                    if (e.key === 'ArrowLeft') goTo(current - 1);
-                    if (e.key === 'ArrowRight') goTo(current + 1);
-                });
-            }
-        })();
-        </script>
+    var lb=document.getElementById(wid+'-lb');
+    var openBtn=wrap.querySelector('.eg-tg-lb-open');
+    if(lb&&openBtn){
+        var lbClose=lb.querySelector('.eg-tg-lb-close');
+        var lbP=lb.querySelector('.eg-tg-lb-prev');
+        var lbN=lb.querySelector('.eg-tg-lb-next');
+        openBtn.addEventListener('click',function(e){ e.preventDefault(); lb.classList.add('open'); document.body.style.overflow='hidden'; stopAp(); syncLb(); });
+        function closeLb(){ lb.classList.remove('open'); document.body.style.overflow=''; startAp(); }
+        if(lbClose) lbClose.addEventListener('click',closeLb);
+        lb.addEventListener('click',function(e){ if(e.target===lb) closeLb(); });
+        if(lbP) lbP.addEventListener('click',function(){ goTo(cur-1); });
+        if(lbN) lbN.addEventListener('click',function(){ goTo(cur+1); });
+        document.addEventListener('keydown',function(e){
+            if(!lb.classList.contains('open')) return;
+            if(e.key==='Escape') closeLb();
+            if(e.key==='ArrowLeft') goTo(cur-1);
+            if(e.key==='ArrowRight') goTo(cur+1);
+        });
+    }
+    startAp();
+})();
+</script>
 <?php
     }
 }
-
 Plugin::instance()->widgets_manager->register(new Gofly_Tour_Gallery_Widget());

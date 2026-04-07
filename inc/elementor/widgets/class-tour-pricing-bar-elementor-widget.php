@@ -69,6 +69,18 @@ class Gofly_Tour_Pricing_Bar_Widget extends Widget_Base
         );
 
         $this->add_control(
+            'gofly_tour_pbar_per_person_label',
+            [
+                'label'       => esc_html__('Per Person Label', 'gofly-core'),
+                'type'        => \Elementor\Controls_Manager::TEXT,
+                'default'     => esc_html__('per person', 'gofly-core'),
+                'placeholder' => esc_html__('e.g. PP or per person', 'gofly-core'),
+                'description' => esc_html__('Shown after the price. Leave blank to hide.', 'gofly-core'),
+                'label_block' => true,
+            ]
+        );
+
+        $this->add_control(
             'gofly_tour_pbar_was_label',
             [
                 'label'   => esc_html__('Was Label', 'gofly-core'),
@@ -189,6 +201,26 @@ class Gofly_Tour_Pricing_Bar_Widget extends Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .eg-pbar-price-main' => 'color: {{VALUE}};',
                 ],
+            ]
+        );
+
+        $this->add_control(
+            'gofly_tour_pbar_per_person_color',
+            [
+                'label'     => esc_html__('Per Person Color', 'gofly-core'),
+                'type'      => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .eg-pbar-per-person' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name'     => 'gofly_tour_pbar_per_person_typ',
+                'label'    => esc_html__('Per Person Typography', 'gofly-core'),
+                'selector' => '{{WRAPPER}} .eg-pbar-per-person',
             ]
         );
 
@@ -459,6 +491,7 @@ class Gofly_Tour_Pricing_Bar_Widget extends Widget_Base
 
         $deal_label  = esc_html($settings['gofly_tour_pbar_deal_label'] ?? 'Travel Sale');
         $from_label  = esc_html($settings['gofly_tour_pbar_from_label'] ?? 'From');
+        $pp_label    = $settings['gofly_tour_pbar_per_person_label'] ?? 'per person';
         $was_label   = esc_html($settings['gofly_tour_pbar_was_label'] ?? 'Was');
         $save_label  = esc_html($settings['gofly_tour_pbar_save_label'] ?? 'Save up to');
         $quote_label = esc_html($settings['gofly_tour_pbar_quote_btn_label'] ?? 'Easy Quote');
@@ -486,6 +519,13 @@ class Gofly_Tour_Pricing_Bar_Widget extends Widget_Base
     color: #555;
     text-transform: uppercase;
     letter-spacing: .5px;
+}
+.eg-pbar-per-person {
+    font-size: 13px;
+    color: #888;
+    font-weight: 500;
+    align-self: flex-end;
+    padding-bottom: 3px;
 }
 .eg-pbar-from-row {
     display: flex;
@@ -645,6 +685,7 @@ class Gofly_Tour_Pricing_Bar_Widget extends Widget_Base
         <span class="eg-pbar-from-txt"><?php echo $from_label; ?></span>
         <?php if ($current_price !== null): ?>
             <span class="eg-pbar-price-main"><?php echo Egns_Helper::gofly_format_price($current_price); ?></span>
+            <?php if (!empty($pp_label)): ?><span class="eg-pbar-per-person"><?php echo esc_html($pp_label); ?></span><?php endif; ?>
         <?php else: ?>
             <span class="eg-pbar-price-main"><?php echo esc_html__('Contact Us', 'gofly-core'); ?></span>
         <?php endif; ?>

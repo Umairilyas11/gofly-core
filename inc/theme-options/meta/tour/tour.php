@@ -78,6 +78,12 @@ add_action('csf_loaded', function () {
                     'width' => '100%',
                 ),
                 array(
+                    'id'    => 'tour_card_description',
+                    'type'  => 'textarea',
+                    'title' => esc_html__('Card Description', 'gofly-core'),
+                    'desc'  => esc_html__('Short description shown on the package card and single tour page. Keep it under 20 words for best display.', 'gofly-core'),
+                ),
+                array(
                     'id'          => 'tour_experience_select',
                     'type'        => 'select',
                     'title'       => esc_html__('Select Tour Experience', 'gofly-core'),

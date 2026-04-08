@@ -3,11 +3,11 @@
 Plugin Name: Gofly Core
 Plugin URI: https://themeforest.net/user/egenslab/portfolio
 Description: Gofly core plugin is a elementor widget based plugin. 
-Author: Egens Lab
+Author: Egens Lab (edited by Umair Ilyas)
 Author URI: https://themeforest.net/user/egenslab/
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Version: 1.3.0
+Version: 1.3.0.1
 Text Domain: gofly-core
 */
 
@@ -28,7 +28,7 @@ final class Egns_Core
      *
      * @var string
      */
-    const version = '1.3.0';
+    const version = '1.3.0.1';
 
     /**
      * Class construcotr

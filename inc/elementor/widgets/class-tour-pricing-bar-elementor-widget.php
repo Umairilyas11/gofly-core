@@ -612,6 +612,15 @@ class Gofly_Tour_Pricing_Bar_Widget extends Widget_Base
 }
 
 /* Sticky floating bar */
+.eg-sticky-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1320px;
+    padding: 0;
+    margin:auto;
+}
 .eg-tour-sticky-bar {
     display: none;
     position: fixed;
@@ -630,6 +639,7 @@ class Gofly_Tour_Pricing_Bar_Widget extends Widget_Base
     justify-content: space-between;
     gap: 16px;
     flex-wrap: wrap;
+    height:90px;
 }
 .eg-tour-sticky-info {
     display: flex;
@@ -638,18 +648,18 @@ class Gofly_Tour_Pricing_Bar_Widget extends Widget_Base
     flex-wrap: wrap;
 }
 .eg-tour-sticky-title {
-    font-size: 16px;
+    font-size: 22px;
     font-weight: 700;
     color: #1a1a1a;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 260px;
+    max-width: 400px;
 }
 .eg-tour-sticky-price {
-    font-size: 15px;
+    font-size: 27px;
     font-weight: 700;
-    color: #b32a2a;
+    color: #ff5800;
 }
 .eg-tour-sticky-btns {
     display: flex;
@@ -658,8 +668,8 @@ class Gofly_Tour_Pricing_Bar_Widget extends Widget_Base
 }
 .eg-tour-sticky-btns .eg-pbar-quote-btn,
 .eg-tour-sticky-btns .eg-pbar-call-btn {
-    padding: 9px 18px;
-    font-size: 14px;
+    padding: 15px 20px;
+    font-size: 18px;
     min-width: unset;
     flex: unset;
 }
@@ -730,18 +740,19 @@ class Gofly_Tour_Pricing_Bar_Widget extends Widget_Base
 
 <!-- Sticky bar that appears at top when scrolling -->
 <div class="eg-tour-sticky-bar eg-tour-sticky-bar-<?php echo esc_attr($widget_id); ?>" id="eg-sticky-bar-<?php echo esc_attr($widget_id); ?>">
-    <div class="eg-tour-sticky-info">
-        <span class="eg-tour-sticky-title"><?php the_title(); ?></span>
-        <?php if ($current_price !== null): ?>
-            <span class="eg-tour-sticky-price"><?php echo Egns_Helper::gofly_format_price($current_price); ?></span>
-        <?php endif; ?>
-    </div>
-    <div class="eg-tour-sticky-btns">
-        <button class="eg-pbar-quote-btn"
-            data-bs-toggle="modal"
-            data-bs-target="#enquiry<?php echo esc_attr($id); ?>">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <div class="eg-sticky-inner">
+        <div class="eg-tour-sticky-info">
+            <span class="eg-tour-sticky-title"><?php the_title(); ?></span>
+            <?php if ($current_price !== null): ?>
+                <span class="eg-tour-sticky-price"><?php echo Egns_Helper::gofly_format_price($current_price); ?></span>
+            <?php endif; ?>
+        </div>
+        <div class="eg-tour-sticky-btns">
+            <button class="eg-pbar-quote-btn"
+                data-bs-toggle="modal"
+                data-bs-target="#enquiry<?php echo esc_attr($id); ?>">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             <?php echo $quote_label; ?>
         </button>
@@ -754,6 +765,7 @@ class Gofly_Tour_Pricing_Bar_Widget extends Widget_Base
         </a>
         <?php endif; ?>
     </div>
+        </div>
 </div>
 
 <script>
@@ -774,6 +786,24 @@ class Gofly_Tour_Pricing_Bar_Widget extends Widget_Base
     onScroll(); // run on load in case page is already scrolled
 })();
 </script>
+
+<!-- Enquiry Modal -->
+<div class="modal enquiry-modal fade" id="enquiry<?php echo esc_attr($id); ?>" tabindex="-1" aria-labelledby="enquiryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close">
+                <svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.00247 0.500545C1.79016 0.505525 1.58918 0.582706 1.4362 0.735547L0.694403 1.479C0.345704 1.82743 0.389689 2.43243 0.79164 2.83493L3.00694 5.05341L0.79164 7.27092C0.389689 7.67328 0.345566 8.27842 0.694403 8.62753L1.4362 9.37044C1.7849 9.71872 2.38879 9.67543 2.7913 9.27293L5.00659 7.05473L7.22189 9.27293C7.62467 9.67543 8.22898 9.71872 8.57699 9.37044L9.31989 8.62753C9.6679 8.27856 9.62461 7.67342 9.22182 7.27092L7.00653 5.05341L9.22182 2.83493C9.62461 2.43243 9.6679 1.82743 9.31989 1.479L8.57699 0.735547C8.22898 0.386433 7.62467 0.430557 7.22189 0.833614L5.00659 3.05126L2.7913 0.833753C2.56515 0.606635 2.27482 0.493906 2.00247 0.500545Z" />
+                </svg>
+            </button>
+            <div class="modal-body">
+                <h4 class="modal-title" id="enquiryModalLabel"><?php echo Egns_Helper::egns_get_theme_option('tour_inquiry_form_title') ?></h4>
+                <?php echo do_shortcode(Egns_Helper::egns_get_theme_option('tour_inquiry_form_shortcode')) ?>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php
     }
 }

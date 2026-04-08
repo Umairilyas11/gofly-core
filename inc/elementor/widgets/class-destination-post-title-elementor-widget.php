@@ -112,7 +112,7 @@ class Gofly_Destination_Post_Title_Widget extends Widget_Base
                 <div class="row justify-content-center wow animate fadeInDown" data-wow-delay="200ms" data-wow-duration="1500ms">
                     <div class="col-lg-10">
                         <div class="destination-details-content">
-                            <h2><?php echo esc_html(get_the_title($id)) ?></h2>
+                            <h1><?php echo esc_html(get_the_title($id)) ?></h1>
                         </div>
                     </div>
                 </div>

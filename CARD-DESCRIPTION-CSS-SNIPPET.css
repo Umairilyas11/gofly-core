@@ -1,0 +1,22 @@
+/*
+ * ============================================================
+ * EG Travel Package – Card Description Styles
+ * Add this CSS to: Appearance > Customize > Additional CSS
+ * OR your child theme's style.css
+ * ============================================================
+ */
+
+/* Card description: capped to 2 lines with ellipsis */
+.package-card .package-content .package-card-desc {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #666;
+    margin: 8px 0 10px;
+
+    /* Cap to 2 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

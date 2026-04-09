@@ -80,8 +80,15 @@ add_action('csf_loaded', function () {
                 array(
                     'id'    => 'tour_card_description',
                     'type'  => 'textarea',
-                    'title' => esc_html__('Card Description', 'gofly-core'),
-                    'desc'  => esc_html__('Short description shown on the package card and single tour page. Keep it under 20 words for best display.', 'gofly-core'),
+                    'title' => esc_html__('Description', 'gofly-core'),
+                    'desc'  => esc_html__('Description of the tour', 'gofly-core'),
+                ),
+                array(
+                    'id'      => 'tour_highlights_list',
+                    'type'    => 'textarea',
+                    'title'   => esc_html__('Tour Highlights', 'gofly-core'),
+                    'desc'    => esc_html__('Enter each highlight on a new line. Each line becomes one bullet point.', 'gofly-core'),
+                    'default' => "Crystal-Clear Waters\nLuxury Overwater Villas\nDolphin Watching",
                 ),
                 array(
                     'id'          => 'tour_experience_select',

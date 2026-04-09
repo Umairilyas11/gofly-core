@@ -1088,6 +1088,12 @@ if (!empty($tax_query)) {
                                                 <span><?php echo $day . ($night ? ('/' . $night) : '') ?></span>
                                             <?php endif; ?>
                                         </div>
+                                        <?php
+                                        $card_desc = Egns_Helper::egns_get_tour_value('tour_card_description');
+                                        if (!empty($card_desc)) :
+                                        ?>
+                                            <p class="package-card-desc"><?php echo esc_html(wp_trim_words($card_desc, 20, '...')); ?></p>
+                                        <?php endif; ?>
                                         <div class="btn-and-price-area">
                                             <a href="<?php the_permalink() ?>" class="primary-btn1">
                                                 <span>
@@ -1512,6 +1518,12 @@ if (!empty($tax_query)) {
                                                 <span><?php echo $day . ($night ? ('/' . $night) : '') ?></span>
                                             <?php endif; ?>
                                         </div>
+                                        <?php
+                                        $card_desc = Egns_Helper::egns_get_tour_value('tour_card_description');
+                                        if (!empty($card_desc)) :
+                                        ?>
+                                            <p class="package-card-desc"><?php echo esc_html(wp_trim_words($card_desc, 20, '...')); ?></p>
+                                        <?php endif; ?>
                                         <div class="btn-and-price-area">
                                             <?php echo Egns_Helper::get_single_starting_price(get_the_ID(), 'three') ?>
                                             <a href="#" class="map-view-btn" data-bs-toggle="modal" data-bs-target="#mapViewModal<?php echo get_the_ID() ?>">

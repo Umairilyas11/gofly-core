@@ -183,6 +183,7 @@ if (!class_exists('Egns_Elementor')) {
 				'tour-pricing-bar',
 				'tour-social-share',
 				'tour-card-description', 
+				'tour-highlights',  
 				// Visa Single 
 				'visa-critaria-tab',
 				// Experience Single 

@@ -1116,33 +1116,8 @@ document.querySelectorAll(".package-card-img-slider").forEach((slider, index) =>
                                 </span>
                             </a>
                             <?php echo Egns_Helper::get_global_starting_price(get_the_ID()) ?>
-                            <!-- ✅ ADD: Get A Quote button -->
-                            <button class="eg-pbar-quote-btn" data-bs-toggle="modal"
-                                data-bs-target="#enquiry<?php echo get_the_ID(); ?>">
-                                <?php echo esc_html__('Get A Quote', 'gofly-core') ?>
-                            </button>
-                        </div>
 
-                        <!-- ✅ ADD: Enquiry Modal (once per card, outside btn-and-price-area) -->
-                        <div class="modal enquiry-modal fade" id="enquiry<?php echo get_the_ID(); ?>" tabindex="-1"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close">
-                                        <svg width="10" height="10" viewBox="0 0 10 10"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M2.00247 0.500545C1.79016 0.505525 1.58918 0.582706 1.4362 0.735547L0.694403 1.479C0.345704 1.82743 0.389689 2.43243 0.79164 2.83493L3.00694 5.05341L0.79164 7.27092C0.389689 7.67328 0.345566 8.27842 0.694403 8.62753L1.4362 9.37044C1.7849 9.71872 2.38879 9.67543 2.7913 9.27293L5.00659 7.05473L7.22189 9.27293C7.62467 9.67543 8.22898 9.71872 8.57699 9.37044L9.31989 8.62753C9.6679 8.27856 9.62461 7.67342 9.22182 7.27092L7.00653 5.05341L9.22182 2.83493C9.62461 2.43243 9.6679 1.82743 9.31989 1.479L8.57699 0.735547C8.22898 0.386433 7.62467 0.430557 7.22189 0.833614L5.00659 3.05126L2.7913 0.833753C2.56515 0.606635 2.27482 0.493906 2.00247 0.500545Z" />
-                                        </svg>
-                                    </button>
-                                    <div class="modal-body">
-                                        <h4 class="modal-title">
-                                            <?php echo Egns_Helper::egns_get_theme_option('tour_inquiry_form_title') ?>
-                                        </h4>
-                                        <?php echo do_shortcode(Egns_Helper::egns_get_theme_option('tour_inquiry_form_shortcode')) ?>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
 
                         <?php if (!empty(Egns_Helper::egns_get_tour_value('tour_experience_label') || Egns_Helper::egns_get_tour_value('tour_inclusion_tip_label'))) : ?>

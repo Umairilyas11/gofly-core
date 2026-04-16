@@ -84,12 +84,42 @@ add_action('csf_loaded', function () {
                     'desc'  => esc_html__('Description of the tour', 'gofly-core'),
                 ),
                 array(
+                    'id'      => 'tour_duration_night',
+                    'type'    => 'text',
+                    'title'   => 'Duration (Nights)',
+                    'default' => '6 Nights',
+                ),
+                array(
+    'type'    => 'subheading',
+    'content' => esc_html__('Deal Price Override', 'gofly-core'),
+),
+array(
+    'id'   => 'tour_deal_price',
+    'type' => 'number',
+    'title' => esc_html__('Deal Price', 'gofly-core'),
+    'desc' => esc_html__('Overrides the auto-calculated price from packages. Leave blank to use package prices.', 'gofly-core'),
+),
+array(
+    'id'         => 'tour_deal_sale_price',
+    'type'       => 'number',
+    'title'      => esc_html__('Deal Sale Price (optional)', 'gofly-core'),
+    'desc'       => esc_html__('If set and lower than Deal Price, it shows as the discounted price with a strikethrough on the original.', 'gofly-core'),
+    'dependency' => array('tour_deal_price', '!=', ''),
+),
+                array(
                     'id'      => 'tour_highlights_list',
                     'type'    => 'textarea',
                     'title'   => esc_html__('Tour Highlights', 'gofly-core'),
                     'desc'    => esc_html__('Enter each highlight on a new line. Each line becomes one bullet point.', 'gofly-core'),
                     'default' => "Crystal-Clear Waters\nLuxury Overwater Villas\nDolphin Watching",
                 ),
+                array(
+    'id'      => 'tour_excursions_list',
+    'type'    => 'textarea',
+    'title'   => esc_html__('Tour Excursions', 'gofly-core'),
+    'desc'    => esc_html__('Enter each excursion on a new line. Wrap text in <strong> to make it a heading (bullet icon hidden).', 'gofly-core'),
+    'default' => "Snorkeling Trip\n<strong>Water Activities</strong>\nSunset Cruise",
+),
                 array(
                     'id'          => 'tour_experience_select',
                     'type'        => 'select',
@@ -166,12 +196,7 @@ add_action('csf_loaded', function () {
                     'title'   => 'Duration (Days)',
                     'default' => '5 Days',
                 ),
-                array(
-                    'id'      => 'tour_duration_night',
-                    'type'    => 'text',
-                    'title'   => 'Duration (Nights)',
-                    'default' => '6 Nights',
-                ),
+                
 
                 // Travelers 
                 array(
@@ -666,5 +691,126 @@ add_action('csf_loaded', function () {
                 ),
             ),
         ));
+        CSF::createSection("EGNS_TOUR_META_ID", array(
+    'parent' => 'tour_meta_option',            // same parent as all other tour tabs
+    'title'  => esc_html__('FAQ', 'gofly-core'),
+    'fields' => array(
+ 
+        array(
+            'type'    => 'subheading',
+            'content' => esc_html__('Frequently Asked Questions', 'gofly-core'),
+        ),
+ 
+        array(
+            'id'                     => 'tour_faq_list',          // ← the meta key used by the widget
+            'type'                   => 'group',
+            'button_title'           => esc_html__('Add FAQ Item', 'gofly-core'),
+            'accordion_title_number' => true,
+            'fields'                 => array(
+ 
+                array(
+                    'id'      => 'tour_faq_question',
+                    'type'    => 'text',
+                    'title'   => esc_html__('Question', 'gofly-core'),
+                    'default' => esc_html__('What is included in this tour package?', 'gofly-core'),
+                ),
+ 
+                array(
+                    'id'      => 'tour_faq_answer',
+                    'type'    => 'wp_editor',
+                    'title'   => esc_html__('Answer', 'gofly-core'),
+                    'tinymce'       => true,
+                    'quicktags'     => true,
+                    'media_buttons' => false,
+                    'height'        => '120px',
+                    'default'       => esc_html__('Our tour package includes accommodation, daily breakfast, guided sightseeing, airport transfers, and all entry fees.', 'gofly-core'),
+                ),
+ 
+            ),
+            'default' => array(
+                array(
+                    'tour_faq_question' => esc_html__('What is included in this tour package?', 'gofly-core'),
+                    'tour_faq_answer'   => esc_html__('Our tour package includes accommodation, daily breakfast, guided sightseeing, airport transfers, and all entry fees.', 'gofly-core'),
+                ),
+                array(
+                    'tour_faq_question' => esc_html__('Is this tour suitable for children?', 'gofly-core'),
+                    'tour_faq_answer'   => esc_html__('Yes, this tour is family-friendly. Children under 5 travel free; special rates apply for ages 5–12.', 'gofly-core'),
+                ),
+                array(
+                    'tour_faq_question' => esc_html__('What is the cancellation policy?', 'gofly-core'),
+                    'tour_faq_answer'   => esc_html__('Cancellations made 30+ days before departure receive a full refund. Cancellations within 7 days are non-refundable.', 'gofly-core'),
+                ),
+            ),
+        ),
+ 
+    ),
+));
+// Tour Accommodations
+CSF::createSection("EGNS_TOUR_META_ID", array(
+    'parent' => 'tour_meta_option',
+    'title'  => esc_html__('Accommodations', 'gofly-core'),
+    'fields' => array(
+
+        array(
+            'type'    => 'subheading',
+            'content' => esc_html__('Tour Accommodations', 'gofly-core'),
+        ),
+
+        array(
+            'id'           => 'tour_accommodation_list',
+            'type'         => 'group',
+            'button_title' => esc_html__('Add Accommodation', 'gofly-core'),
+            'accordion_title_number' => true,
+            'fields'       => array(
+
+                array(
+                    'id'    => 'tour_accom_image',
+                    'type'  => 'media',
+                    'title' => esc_html__('Image', 'gofly-core'),
+                ),
+                array(
+                    'id'      => 'tour_accom_name',
+                    'type'    => 'text',
+                    'title'   => esc_html__('Hotel Name', 'gofly-core'),
+                    'default' => esc_html__('Iberostar Waves Rose Hall Beach', 'gofly-core'),
+                ),
+                array(
+                    'id'      => 'tour_accom_desc',
+                    'type'    => 'textarea',
+                    'title'   => esc_html__('Description', 'gofly-core'),
+                    'default' => esc_html__('A 5-star all-inclusive resort with direct access to the beach, modern rooms, several dining options and swimming pools.', 'gofly-core'),
+                ),
+                array(
+                    'id'      => 'tour_accom_stars',
+                    'type'    => 'number',
+                    'title'   => esc_html__('Star Rating', 'gofly-core'),
+                    'default' => 5,
+                    'desc'    => esc_html__('1 to 5', 'gofly-core'),
+                ),
+                array(
+                    'id'    => 'tour_accom_link',
+                    'type'  => 'link',
+                    'title' => esc_html__('View Button Link', 'gofly-core'),
+                    'default' => array(
+                        'url'    => '#',
+                        'text'   => 'View',
+                        'target' => '_blank',
+                    ),
+                ),
+
+            ),
+            'default' => array(
+                array(
+                    'tour_accom_name'  => esc_html__('Iberostar Waves Rose Hall Beach', 'gofly-core'),
+                    'tour_accom_desc'  => esc_html__('A 5-star all-inclusive resort with direct access to the beach, modern rooms, several dining options and swimming pools.', 'gofly-core'),
+                    'tour_accom_stars' => 5,
+                    'tour_accom_link'  => array('url' => '#', 'text' => 'View', 'target' => '_blank'),
+                ),
+            ),
+        ),
+
+    ),
+));
     }
+    
 });

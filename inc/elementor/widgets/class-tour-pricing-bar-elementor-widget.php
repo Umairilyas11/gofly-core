@@ -457,37 +457,44 @@ class Gofly_Tour_Pricing_Bar_Widget extends Widget_Base
         $tour_packages = $meta['tour_pricing_package'] ?? [];
         $has_sale      = Egns_Helper::has_sale_price($id);
 
-        // Calculate min sale price and min regular price for display
-        $min_sale    = null;
-        $min_regular = null;
+       // Calculate min sale price and min regular price for display
+$min_sale    = null;
+$min_regular = null;
 
-        if (is_array($tour_packages)) {
-            foreach ($tour_packages as $package) {
-                $reg_prices  = $package['trip_price_table']['regular_price'] ?? [];
-                $sale_prices = $package['trip_price_table']['sale_price'] ?? [];
+// Deal Price Override — check meta fields first
+$deal_price      = !empty($meta['tour_deal_price']) ? floatval($meta['tour_deal_price']) : null;
+$deal_sale_price = !empty($meta['tour_deal_sale_price']) ? floatval($meta['tour_deal_sale_price']) : null;
 
-                foreach ($reg_prices as $taxonomy => $reg_values) {
-                    if (!is_array($reg_values)) continue;
-                    foreach ($reg_values as $index => $reg_price) {
-                        $reg  = ($reg_price !== '' && $reg_price !== null) ? floatval($reg_price) : 0;
-                        $sale = isset($sale_prices[$taxonomy][$index]) && $sale_prices[$taxonomy][$index] !== ''
-                            ? floatval($sale_prices[$taxonomy][$index])
-                            : null;
+if ($deal_price !== null) {
+    $min_regular = $deal_price;
+    $min_sale    = ($deal_sale_price !== null && $deal_sale_price < $deal_price) ? $deal_sale_price : null;
+} elseif (is_array($tour_packages)) {
+    foreach ($tour_packages as $package) {
+        $reg_prices  = $package['trip_price_table']['regular_price'] ?? [];
+        $sale_prices = $package['trip_price_table']['sale_price'] ?? [];
 
-                        if ($reg > 0) {
-                            $min_regular = ($min_regular === null || $reg < $min_regular) ? $reg : $min_regular;
-                        }
-                        if ($sale !== null && $sale > 0) {
-                            $min_sale = ($min_sale === null || $sale < $min_sale) ? $sale : $min_sale;
-                        }
-                    }
+        foreach ($reg_prices as $taxonomy => $reg_values) {
+            if (!is_array($reg_values)) continue;
+            foreach ($reg_values as $index => $reg_price) {
+                $reg  = ($reg_price !== '' && $reg_price !== null) ? floatval($reg_price) : 0;
+                $sale = isset($sale_prices[$taxonomy][$index]) && $sale_prices[$taxonomy][$index] !== ''
+                    ? floatval($sale_prices[$taxonomy][$index])
+                    : null;
+
+                if ($reg > 0) {
+                    $min_regular = ($min_regular === null || $reg < $min_regular) ? $reg : $min_regular;
+                }
+                if ($sale !== null && $sale > 0) {
+                    $min_sale = ($min_sale === null || $sale < $min_sale) ? $sale : $min_sale;
                 }
             }
         }
+    }
+}
 
-        $current_price = ($min_sale !== null && $min_sale < $min_regular) ? $min_sale : $min_regular;
-        $old_price     = ($min_sale !== null && $min_sale < $min_regular) ? $min_regular : null;
-        $savings       = ($old_price !== null && $current_price !== null) ? ($old_price - $current_price) : null;
+$current_price = ($min_sale !== null && $min_sale < $min_regular) ? $min_sale : $min_regular;
+$old_price     = ($min_sale !== null && $min_sale < $min_regular) ? $min_regular : null;
+$savings       = ($old_price !== null && $current_price !== null) ? ($old_price - $current_price) : null;
 
         $deal_label  = esc_html($settings['gofly_tour_pbar_deal_label'] ?? 'Travel Sale');
         $from_label  = esc_html($settings['gofly_tour_pbar_from_label'] ?? 'From');

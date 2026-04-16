@@ -1266,6 +1266,19 @@ if (!class_exists('Egns_Helper')) {
 		public static function get_global_starting_price($trip_id)
 		{
 			$meta = get_post_meta($trip_id, 'EGNS_TOUR_META_ID', true);
+			// Deal Price Override
+$deal_price      = !empty($meta['tour_deal_price']) ? floatval($meta['tour_deal_price']) : null;
+$deal_sale_price = !empty($meta['tour_deal_sale_price']) ? floatval($meta['tour_deal_sale_price']) : null;
+$price_type      = $meta['tour_price_type'] ?? 'per_person';
+$type_label      = ($price_type === 'per_person') ? esc_html__('per person', 'gofly-core') : esc_html__('per group', 'gofly-core');
+
+if ($deal_price !== null) {
+    $show_sale = ($deal_sale_price !== null && $deal_sale_price < $deal_price);
+    if ($show_sale) {
+        return '<div class="price-area"><h6>' . $type_label . '</h6><span><del>' . self::gofly_format_price($deal_price) . '</del>' . self::gofly_format_price($deal_sale_price) . '</span></div>';
+    }
+    return '<div class="price-area"><h6>' . $type_label . '</h6><span>' . self::gofly_format_price($deal_price) . '</span></div>';
+}
 			$tour_packages = $meta['tour_pricing_package'] ?? [];
 
 			if (!is_array($tour_packages) || empty($tour_packages)) return '';
@@ -1322,6 +1335,25 @@ if (!class_exists('Egns_Helper')) {
 		public static function get_single_starting_price($trip_id, $layout = 'one')
 		{
 			$meta = get_post_meta($trip_id, 'EGNS_TOUR_META_ID', true);
+			// Deal Price Override
+$deal_price      = !empty($meta['tour_deal_price']) ? floatval($meta['tour_deal_price']) : null;
+$deal_sale_price = !empty($meta['tour_deal_sale_price']) ? floatval($meta['tour_deal_sale_price']) : null;
+$price_type      = $meta['tour_price_type'] ?? 'per_person';
+$type_label      = ($price_type === 'per_person') ? ' /' . esc_html__('per person', 'gofly-core') : ' /' . esc_html__('per group', 'gofly-core');
+
+if ($deal_price !== null) {
+    $show_sale = ($deal_sale_price !== null && $deal_sale_price < $deal_price);
+    if ($layout === 'one') {
+        return $show_sale
+            ? '<span class="starting-price">' . esc_html__('Starting From ', 'gofly-core') . '<strong>' . self::gofly_format_price($deal_sale_price) . '</strong> <del>' . self::gofly_format_price($deal_price) . '</del>' . $type_label . '</span>'
+            : '<span class="starting-price">' . esc_html__('Starting From ', 'gofly-core') . '<strong>' . self::gofly_format_price($deal_price) . '</strong>' . $type_label . '</span>';
+    }
+    if ($layout === 'two') {
+        return $show_sale
+            ? '<div class="price-area"><h6>' . esc_html__('Starting From', 'gofly-core') . '</h6><span><del>' . self::gofly_format_price($deal_price) . '</del> ' . self::gofly_format_price($deal_sale_price) . '<sub>' . $type_label . '</sub></span></div>'
+            : '<div class="price-area"><h6>' . esc_html__('Starting From', 'gofly-core') . '</h6><span>' . self::gofly_format_price($deal_price) . '<sub>' . $type_label . '</sub></span></div>';
+    }
+}
 			$tour_packages = $meta['tour_pricing_package'] ?? [];
 
 			if (!is_array($tour_packages) || empty($tour_packages)) {

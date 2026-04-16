@@ -184,6 +184,10 @@ if (!class_exists('Egns_Elementor')) {
 				'tour-social-share',
 				'tour-card-description', 
 				'tour-highlights',  
+				'tour-faq',
+				'tour-excursions',
+				'tour-destination',
+				'tour-accommodation',
 				// Visa Single 
 				'visa-critaria-tab',
 				// Experience Single 

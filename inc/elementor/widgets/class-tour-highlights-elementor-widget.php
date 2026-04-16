@@ -238,12 +238,14 @@ class Gofly_Tour_Highlights_Widget extends Widget_Base
                 <h3 class="gofly-highlights-title"><?php echo esc_html($title); ?></h3>
             <?php endif; ?>
             <ul class="gofly-highlights-list">
-                <?php foreach ($items as $item) : ?>
-                    <li>
-                        <?php echo $svg_icon; ?>
-                        <span><?php echo wp_kses_post($item); ?></span>
-                    </li>
-                <?php endforeach; ?>
+                <?php foreach ($items as $item) :
+    $is_heading = (bool) preg_match('/^\s*<strong>.*<\/strong>\s*$/i', $item);
+?>
+    <li class="<?php echo $is_heading ? 'gofly-highlight-heading' : ''; ?>">
+        <?php if (!$is_heading) echo $svg_icon; ?>
+        <span><?php echo wp_kses_post($item); ?></span>
+    </li>
+<?php endforeach; ?>
             </ul>
         </div>
 
@@ -268,6 +270,12 @@ class Gofly_Tour_Highlights_Widget extends Widget_Base
                 width: 16px;
                 height: 16px;
             }
+            .gofly-tour-highlights .gofly-highlights-list li.gofly-highlight-heading {
+    margin-top: 6px;
+}
+.gofly-tour-highlights .gofly-highlights-list li.gofly-highlight-heading span {
+    font-weight: 600;
+}
         </style>
 <?php
     }

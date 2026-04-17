@@ -134,7 +134,7 @@ class Gofly_Hero_Banner_Slider_Widget extends Widget_Base
         $repeater->add_control(
             'gofly_hero_banner_slider_genaral_background_contant_image',
             [
-                'label'   => esc_html__('Background Image', 'gofly-core'),
+                'label'   => esc_html__('Background Image (Desktop)', 'gofly-core'),
                 'type'    => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -143,6 +143,22 @@ class Gofly_Hero_Banner_Slider_Widget extends Widget_Base
                 'condition'   => [
                     'gofly_hero_banner_slider_genaral_background_contant_selection' => ['image'],
                 ]
+            ]
+        );
+
+        $repeater->add_control(
+            'gofly_hero_banner_slider_genaral_background_contant_image_mobile',
+            [
+                'label'       => esc_html__('Background Image (Mobile)', 'gofly-core'),
+                'type'        => \Elementor\Controls_Manager::MEDIA,
+                'default'     => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+                ],
+                'media_types' => ['image'],
+                'condition'   => [
+                    'gofly_hero_banner_slider_genaral_background_contant_selection' => ['image'],
+                ],
+                'description' => esc_html__('Shown on screens 767px and below. Falls back to desktop image if left empty.', 'gofly-core'),
             ]
         );
 
@@ -299,7 +315,7 @@ class Gofly_Hero_Banner_Slider_Widget extends Widget_Base
         $repeater->add_control(
             'gofly_hero_banner_style_two_slider_genaral_background_contant_image',
             [
-                'label'   => esc_html__('Background Image', 'gofly-core'),
+                'label'   => esc_html__('Background Image (Desktop)', 'gofly-core'),
                 'type'    => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -308,6 +324,22 @@ class Gofly_Hero_Banner_Slider_Widget extends Widget_Base
                 'condition'   => [
                     'gofly_hero_banner_style_two_slider_genaral_background_contant_selection' => ['image'],
                 ]
+            ]
+        );
+
+        $repeater->add_control(
+            'gofly_hero_banner_style_two_slider_genaral_background_contant_image_mobile',
+            [
+                'label'       => esc_html__('Background Image (Mobile)', 'gofly-core'),
+                'type'        => \Elementor\Controls_Manager::MEDIA,
+                'default'     => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+                ],
+                'media_types' => ['image'],
+                'condition'   => [
+                    'gofly_hero_banner_style_two_slider_genaral_background_contant_selection' => ['image'],
+                ],
+                'description' => esc_html__('Shown on screens 767px and below. Falls back to desktop image if left empty.', 'gofly-core'),
             ]
         );
 
@@ -437,7 +469,7 @@ class Gofly_Hero_Banner_Slider_Widget extends Widget_Base
         $repeater->add_control(
             'gofly_hero_banner_style_three_slider_genaral_background_contant_image',
             [
-                'label'   => esc_html__('Background Image', 'gofly-core'),
+                'label'   => esc_html__('Background Image (Desktop)', 'gofly-core'),
                 'type'    => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -446,6 +478,22 @@ class Gofly_Hero_Banner_Slider_Widget extends Widget_Base
                 'condition'   => [
                     'gofly_hero_banner_style_three_slider_genaral_background_contant_selection' => ['image'],
                 ]
+            ]
+        );
+
+        $repeater->add_control(
+            'gofly_hero_banner_style_three_slider_genaral_background_contant_image_mobile',
+            [
+                'label'       => esc_html__('Background Image (Mobile)', 'gofly-core'),
+                'type'        => \Elementor\Controls_Manager::MEDIA,
+                'default'     => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+                ],
+                'media_types' => ['image'],
+                'condition'   => [
+                    'gofly_hero_banner_style_three_slider_genaral_background_contant_selection' => ['image'],
+                ],
+                'description' => esc_html__('Shown on screens 767px and below. Falls back to desktop image if left empty.', 'gofly-core'),
             ]
         );
 
@@ -564,7 +612,7 @@ class Gofly_Hero_Banner_Slider_Widget extends Widget_Base
         $repeater->add_control(
             'gofly_hero_banner_style_four_slider_genaral_background_contant_image',
             [
-                'label'   => esc_html__('Background Image', 'gofly-core'),
+                'label'   => esc_html__('Background Image (Desktop)', 'gofly-core'),
                 'type'    => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -573,6 +621,22 @@ class Gofly_Hero_Banner_Slider_Widget extends Widget_Base
                 'condition'   => [
                     'gofly_hero_banner_style_four_slider_genaral_background_contant_selection' => ['image'],
                 ]
+            ]
+        );
+
+        $repeater->add_control(
+            'gofly_hero_banner_style_four_slider_genaral_background_contant_image_mobile',
+            [
+                'label'       => esc_html__('Background Image (Mobile)', 'gofly-core'),
+                'type'        => \Elementor\Controls_Manager::MEDIA,
+                'default'     => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+                ],
+                'media_types' => ['image'],
+                'condition'   => [
+                    'gofly_hero_banner_style_four_slider_genaral_background_contant_selection' => ['image'],
+                ],
+                'description' => esc_html__('Shown on screens 767px and below. Falls back to desktop image if left empty.', 'gofly-core'),
             ]
         );
 
@@ -697,7 +761,7 @@ class Gofly_Hero_Banner_Slider_Widget extends Widget_Base
         $repeater->add_control(
             'gofly_hero_banner_style_five_slider_genaral_background_contant_image',
             [
-                'label'   => esc_html__('Background Image', 'gofly-core'),
+                'label'   => esc_html__('Background Image (Desktop)', 'gofly-core'),
                 'type'    => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -706,6 +770,22 @@ class Gofly_Hero_Banner_Slider_Widget extends Widget_Base
                 'condition'   => [
                     'gofly_hero_banner_style_five_slider_genaral_background_contant_selection' => ['image'],
                 ]
+            ]
+        );
+
+        $repeater->add_control(
+            'gofly_hero_banner_style_five_slider_genaral_background_contant_image_mobile',
+            [
+                'label'       => esc_html__('Background Image (Mobile)', 'gofly-core'),
+                'type'        => \Elementor\Controls_Manager::MEDIA,
+                'default'     => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+                ],
+                'media_types' => ['image'],
+                'condition'   => [
+                    'gofly_hero_banner_style_five_slider_genaral_background_contant_selection' => ['image'],
+                ],
+                'description' => esc_html__('Shown on screens 767px and below. Falls back to desktop image if left empty.', 'gofly-core'),
             ]
         );
 
@@ -2010,490 +2090,564 @@ class Gofly_Hero_Banner_Slider_Widget extends Widget_Base
 
 ?>
 
-        <?php if (is_admin()): ?>
-            <script>
-                var swiper = new Swiper(".home2-banner-slider", {
-                    slidesPerView: 1,
-                    speed: 1500,
-                    spaceBetween: 24,
-                    autoplay: {
-                        delay: 3000,
-                        pauseOnMouseEnter: true,
-                        disableOnInteraction: false,
-                    },
-                    effect: "fade",
-                    fadeEffect: {
-                        crossFade: true,
-                    },
-                    navigation: {
-                        nextEl: ".banner-slider-next",
-                        prevEl: ".banner-slider-prev",
-                    },
-                    pagination: {
-                        el: ".banner-pagination",
-                        clickable: true,
-                    },
-                });
+<?php if (is_admin()): ?>
+<script>
+var swiper = new Swiper(".home2-banner-slider", {
+    slidesPerView: 1,
+    speed: 1500,
+    spaceBetween: 24,
+    autoplay: {
+        delay: 3000,
+        pauseOnMouseEnter: true,
+        disableOnInteraction: false,
+    },
+    effect: "fade",
+    fadeEffect: {
+        crossFade: true,
+    },
+    navigation: {
+        nextEl: ".banner-slider-next",
+        prevEl: ".banner-slider-prev",
+    },
+    pagination: {
+        el: ".banner-pagination",
+        clickable: true,
+    },
+});
 
-                var swiper = new Swiper(".home2-banner-slider", {
-                    slidesPerView: 1,
-                    speed: 1500,
-                    spaceBetween: 24,
-                    autoplay: {
-                        delay: 3000,
-                        pauseOnMouseEnter: true,
-                        disableOnInteraction: false,
-                    },
-                    effect: "fade",
-                    fadeEffect: {
-                        crossFade: true,
-                    },
-                    navigation: {
-                        nextEl: ".banner-slider-next",
-                        prevEl: ".banner-slider-prev",
-                    },
-                    pagination: {
-                        el: ".banner-pagination",
-                        clickable: true,
-                    },
-                });
+var swiper = new Swiper(".home2-banner-slider", {
+    slidesPerView: 1,
+    speed: 1500,
+    spaceBetween: 24,
+    autoplay: {
+        delay: 3000,
+        pauseOnMouseEnter: true,
+        disableOnInteraction: false,
+    },
+    effect: "fade",
+    fadeEffect: {
+        crossFade: true,
+    },
+    navigation: {
+        nextEl: ".banner-slider-next",
+        prevEl: ".banner-slider-prev",
+    },
+    pagination: {
+        el: ".banner-pagination",
+        clickable: true,
+    },
+});
 
-                var swiper = new Swiper(".home6-banner-slider", {
-                    slidesPerView: 1,
-                    speed: 1500,
-                    spaceBetween: 24,
-                    autoplay: {
-                        delay: 3000,
-                        disableOnInteraction: false,
-                    },
-                    effect: "fade",
-                    fadeEffect: {
-                        crossFade: true,
-                    },
-                    navigation: {
-                        nextEl: ".banner-slider-next",
-                        prevEl: ".banner-slider-prev",
-                    },
-                    pagination: {
-                        el: ".franctional-pagi1",
-                        type: "fraction",
-                    },
-                });
-            </script>
-        <?php endif; ?>
+var swiper = new Swiper(".home6-banner-slider", {
+    slidesPerView: 1,
+    speed: 1500,
+    spaceBetween: 24,
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+    },
+    effect: "fade",
+    fadeEffect: {
+        crossFade: true,
+    },
+    navigation: {
+        nextEl: ".banner-slider-next",
+        prevEl: ".banner-slider-prev",
+    },
+    pagination: {
+        el: ".franctional-pagi1",
+        type: "fraction",
+    },
+});
+</script>
+<?php endif; ?>
 
-        <?php if ($settings['gofly_hero_banner_slider_genaral_style_selection'] == 'style_one'): ?>
-            <div class="home2-banner-section">
-                <div class="swiper home2-banner-slider">
-                    <div class="swiper-wrapper">
-                        <?php foreach ($settings['gofly_hero_banner_slider_genaral_content_list'] as $slider_data): ?>
-                            <div class="swiper-slide">
-                                <div class="banner-wrapper">
-                                    <div class="<?php if ($slider_data['gofly_hero_banner_slider_genaral_background_contant_selection'] == 'image') : ?> banner-img-area<?php else : ?>banner-video-area<?php endif; ?>">
-                                        <?php
+<?php if ($settings['gofly_hero_banner_slider_genaral_style_selection'] == 'style_one'): ?>
+<div class="home2-banner-section">
+    <div class="swiper home2-banner-slider">
+        <div class="swiper-wrapper">
+            <?php foreach ($settings['gofly_hero_banner_slider_genaral_content_list'] as $slider_data): ?>
+            <div class="swiper-slide">
+                <div class="banner-wrapper">
+                    <div
+                        class="<?php if ($slider_data['gofly_hero_banner_slider_genaral_background_contant_selection'] == 'image') : ?> banner-img-area<?php else : ?>banner-video-area<?php endif; ?>">
+                        <?php
                                         $selection = $slider_data['gofly_hero_banner_slider_genaral_background_contant_selection'] ?? '';
 
                                         if ($selection === 'upload_video' && !empty($slider_data['gofly_hero_banner_slider_genaral_background_contant_upload_video']['url'])): ?>
-                                            <video autoplay loop muted playsinline src="<?php echo esc_url($slider_data['gofly_hero_banner_slider_genaral_background_contant_upload_video']['url']); ?>"></video>
+                        <video autoplay loop muted playsinline
+                            src="<?php echo esc_url($slider_data['gofly_hero_banner_slider_genaral_background_contant_upload_video']['url']); ?>"></video>
 
-                                        <?php elseif ($selection === 'image' && !empty($slider_data['gofly_hero_banner_slider_genaral_background_contant_image']['url'])): ?>
-                                            <img src="<?php echo esc_url($slider_data['gofly_hero_banner_slider_genaral_background_contant_image']['url']); ?>" alt="<?php echo esc_attr__('background-image', 'gofly-core'); ?>">
+                        <?php elseif ($selection === 'image' && !empty($slider_data['gofly_hero_banner_slider_genaral_background_contant_image']['url'])): ?>
+                        <img class="banner-bg-desktop"
+                            src="<?php echo esc_url($slider_data['gofly_hero_banner_slider_genaral_background_contant_image']['url']); ?>"
+                            alt="<?php echo esc_attr__('background-image', 'gofly-core'); ?>">
+                        <?php if (!empty($slider_data['gofly_hero_banner_slider_genaral_background_contant_image_mobile']['url'])): ?>
+                        <img class="banner-bg-mobile"
+                            src="<?php echo esc_url($slider_data['gofly_hero_banner_slider_genaral_background_contant_image_mobile']['url']); ?>"
+                            alt="<?php echo esc_attr__('background-image-mobile', 'gofly-core'); ?>">
+                        <?php endif; ?>
 
-                                        <?php endif; ?>
-                                    </div>
-                                    <div class="banner-content-wrap">
-                                        <div class="container">
-                                            <div class="banner-content">
-                                                <?php if (!empty($slider_data['gofly_hero_banner_slider_genaral_title'])): ?>
-                                                    <h1><?php echo esc_html($slider_data['gofly_hero_banner_slider_genaral_title']); ?></h1>
-                                                <?php endif; ?>
-                                                <?php if (!empty($slider_data['gofly_hero_banner_slider_genaral_description'])): ?>
-                                                    <?php echo wp_kses($slider_data['gofly_hero_banner_slider_genaral_description'], wp_kses_allowed_html('post'));  ?>
-                                                <?php endif; ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <?php endif; ?>
+                    </div>
+                    <div class="banner-content-wrap">
+                        <div class="container">
+                            <div class="banner-content">
+                                <?php if (!empty($slider_data['gofly_hero_banner_slider_genaral_title'])): ?>
+                                <h1><?php echo esc_html($slider_data['gofly_hero_banner_slider_genaral_title']); ?></h1>
+                                <?php endif; ?>
+                                <?php if (!empty($slider_data['gofly_hero_banner_slider_genaral_description'])): ?>
+                                <?php echo wp_kses($slider_data['gofly_hero_banner_slider_genaral_description'], wp_kses_allowed_html('post'));  ?>
+                                <?php endif; ?>
                             </div>
-                        <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
-                <?php if ($settings['gofly_hero_banner_slider_genaral_show_pagination'] == 'yes'): ?>
-                    <div class="slider-btn-grp">
-                        <div class="slider-btn banner-slider-prev">
-                            <svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
-                                <g>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 10.0571H22V11.9428H0V10.0571Z" />
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M0.942857 11.9429C5.3768 11.9429 9.00115 8.0432 9.00115 3.88457V2.94171H7.11543V3.88457C7.11543 7.04251 4.29566 10.0571 0.942857 10.0571H0V11.9429H0.942857Z" />
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M0.942857 10.0571C5.3768 10.0571 9.00115 13.9568 9.00115 18.1154V19.0583H7.11543V18.1154C7.11543 14.9587 4.29566 11.9428 0.942857 11.9428H0V10.0571H0.942857Z" />
-                                </g>
-                            </svg>
-                        </div>
-                        <div class="slider-btn banner-slider-next">
-                            <svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
-                                <g>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M22 10.0571H-5.72205e-06V11.9428H22V10.0571Z" />
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M21.0571 11.9429C16.6232 11.9429 12.9989 8.0432 12.9989 3.88457V2.94171H14.8846V3.88457C14.8846 7.04251 17.7043 10.0571 21.0571 10.0571H22V11.9429H21.0571Z" />
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M21.0571 10.0571C16.6232 10.0571 12.9989 13.9568 12.9989 18.1154V19.0583H14.8846V18.1154C14.8846 14.9587 17.7043 11.9428 21.0571 11.9428H22V10.0571H21.0571Z" />
-                                </g>
-                            </svg>
-                        </div>
-                    </div>
-                <?php endif; ?>
             </div>
-        <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <?php if ($settings['gofly_hero_banner_slider_genaral_show_pagination'] == 'yes'): ?>
+    <div class="slider-btn-grp">
+        <div class="slider-btn banner-slider-prev">
+            <svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 10.0571H22V11.9428H0V10.0571Z" />
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M0.942857 11.9429C5.3768 11.9429 9.00115 8.0432 9.00115 3.88457V2.94171H7.11543V3.88457C7.11543 7.04251 4.29566 10.0571 0.942857 10.0571H0V11.9429H0.942857Z" />
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M0.942857 10.0571C5.3768 10.0571 9.00115 13.9568 9.00115 18.1154V19.0583H7.11543V18.1154C7.11543 14.9587 4.29566 11.9428 0.942857 11.9428H0V10.0571H0.942857Z" />
+                </g>
+            </svg>
+        </div>
+        <div class="slider-btn banner-slider-next">
+            <svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M22 10.0571H-5.72205e-06V11.9428H22V10.0571Z" />
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M21.0571 11.9429C16.6232 11.9429 12.9989 8.0432 12.9989 3.88457V2.94171H14.8846V3.88457C14.8846 7.04251 17.7043 10.0571 21.0571 10.0571H22V11.9429H21.0571Z" />
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M21.0571 10.0571C16.6232 10.0571 12.9989 13.9568 12.9989 18.1154V19.0583H14.8846V18.1154C14.8846 14.9587 17.7043 11.9428 21.0571 11.9428H22V10.0571H21.0571Z" />
+                </g>
+            </svg>
+        </div>
+    </div>
+    <?php endif; ?>
+</div>
+<?php endif; ?>
 
-        <?php if ($settings['gofly_hero_banner_slider_genaral_style_selection'] == 'style_two'): ?>
-            <div class="home3-banner-section">
-                <div class="swiper home2-banner-slider">
-                    <div class="swiper-wrapper">
-                        <?php foreach ($settings['gofly_hero_banner_style_two_slider_genaral_content_list'] as $banner_data): ?>
-                            <div class="swiper-slide">
-                                <div class="banner-wrapper">
-                                    <?php
+<?php if ($settings['gofly_hero_banner_slider_genaral_style_selection'] == 'style_two'): ?>
+<div class="home3-banner-section">
+    <div class="swiper home2-banner-slider">
+        <div class="swiper-wrapper">
+            <?php foreach ($settings['gofly_hero_banner_style_two_slider_genaral_content_list'] as $banner_data): ?>
+            <div class="swiper-slide">
+                <div class="banner-wrapper">
+                    <?php
                                     $banner_type = !empty($banner_data['gofly_hero_banner_style_two_slider_genaral_background_contant_selection'])
                                         ? $banner_data['gofly_hero_banner_style_two_slider_genaral_background_contant_selection']
                                         :  'image';
 
                                     $banner_class = ($banner_type === 'image') ? 'banner-img-area' : 'banner-video-area';
                                     ?>
-                                    <div class="<?php echo esc_attr($banner_class); ?>">
-                                        <?php
+                    <div class="<?php echo esc_attr($banner_class); ?>">
+                        <?php
                                         $selection = $banner_data['gofly_hero_banner_style_two_slider_genaral_background_contant_selection'] ?? '';
 
                                         if ($selection === 'upload_video' && !empty($banner_data['gofly_hero_banner_style_two_slider_genaral_background_contant_upload_video']['url'])): ?>
-                                            <video autoplay loop muted playsinline src="<?php echo esc_url($banner_data['gofly_hero_banner_style_two_slider_genaral_background_contant_upload_video']['url']); ?>"></video>
+                        <video autoplay loop muted playsinline
+                            src="<?php echo esc_url($banner_data['gofly_hero_banner_style_two_slider_genaral_background_contant_upload_video']['url']); ?>"></video>
 
-                                        <?php elseif ($selection === 'image' && !empty($banner_data['gofly_hero_banner_style_two_slider_genaral_background_contant_image']['url'])): ?>
-                                            <img src="<?php echo esc_url($banner_data['gofly_hero_banner_style_two_slider_genaral_background_contant_image']['url']); ?>" alt="<?php echo esc_attr__('background-image', 'gofly-core'); ?>">
+                        <?php elseif ($selection === 'image' && !empty($banner_data['gofly_hero_banner_style_two_slider_genaral_background_contant_image']['url'])): ?>
+                        <img class="banner-bg-desktop"
+                            src="<?php echo esc_url($banner_data['gofly_hero_banner_style_two_slider_genaral_background_contant_image']['url']); ?>"
+                            alt="<?php echo esc_attr__('background-image', 'gofly-core'); ?>">
+                        <?php if (!empty($banner_data['gofly_hero_banner_style_two_slider_genaral_background_contant_image_mobile']['url'])): ?>
+                        <img class="banner-bg-mobile"
+                            src="<?php echo esc_url($banner_data['gofly_hero_banner_style_two_slider_genaral_background_contant_image_mobile']['url']); ?>"
+                            alt="<?php echo esc_attr__('background-image-mobile', 'gofly-core'); ?>">
+                        <?php endif; ?>
 
-                                        <?php endif; ?>
-                                    </div>
-                                    <div class="banner-content-wrap">
-                                        <div class="container">
-                                            <div class="banner-content">
-                                                <div class="award-rating-area">
-                                                    <?php if (!empty($banner_data['gofly_hero_banner_style_two_slider_genaral_award_rating_icon_image']['url'])): ?>
-                                                        <img src="<?php echo esc_url($banner_data['gofly_hero_banner_style_two_slider_genaral_award_rating_icon_image']['url']); ?>" alt="<?php echo esc_attr__('icon-image', 'gofly-core'); ?>">
-                                                    <?php endif; ?>
-                                                    <?php if (!empty($banner_data['gofly_hero_banner_style_two_slider_genaral_award_rating_area_title'])): ?>
-                                                        <h4><?php echo esc_html($banner_data['gofly_hero_banner_style_two_slider_genaral_award_rating_area_title']); ?></h4>
-                                                    <?php endif; ?>
-                                                    <div class="rating">
-                                                        <?php
+                        <?php endif; ?>
+                    </div>
+                    <div class="banner-content-wrap">
+                        <div class="container">
+                            <div class="banner-content">
+                                <div class="award-rating-area">
+                                    <?php if (!empty($banner_data['gofly_hero_banner_style_two_slider_genaral_award_rating_icon_image']['url'])): ?>
+                                    <img src="<?php echo esc_url($banner_data['gofly_hero_banner_style_two_slider_genaral_award_rating_icon_image']['url']); ?>"
+                                        alt="<?php echo esc_attr__('icon-image', 'gofly-core'); ?>">
+                                    <?php endif; ?>
+                                    <?php if (!empty($banner_data['gofly_hero_banner_style_two_slider_genaral_award_rating_area_title'])): ?>
+                                    <h4><?php echo esc_html($banner_data['gofly_hero_banner_style_two_slider_genaral_award_rating_area_title']); ?>
+                                    </h4>
+                                    <?php endif; ?>
+                                    <div class="rating">
+                                        <?php
                                                         $rank_counter = isset($banner_data['gofly_hero_banner_style_two_slider_genaral_award_rating_area_rating'])
                                                             ? intval($banner_data['gofly_hero_banner_style_two_slider_genaral_award_rating_area_rating'])
                                                             :  0;
                                                         $rank_counter = max(0, min(5, $rank_counter));
                                                         ?>
-                                                        <span>(</span>
-                                                        <ul class="rating-stars">
-                                                            <?php for ($i = 1; $i <= 5; $i++): ?>
-                                                                <li>
-                                                                    <?php if ($i <= $rank_counter): ?>
-                                                                        <i class="bi bi-star-fill" aria-hidden="true"></i>
-                                                                    <?php else: ?>
-                                                                        <i class="bi bi-star" aria-hidden="true"></i>
-                                                                    <?php endif; ?>
-                                                                </li>
-                                                            <?php endfor; ?>
-                                                        </ul>
-                                                        <span>)</span>
-                                                    </div>
-                                                </div>
-                                                <?php if (!empty($banner_data['gofly_hero_banner_style_two_slider_genaral_title'])): ?>
-                                                    <h1><?php echo esc_html($banner_data['gofly_hero_banner_style_two_slider_genaral_title']); ?></h1>
+                                        <span>(</span>
+                                        <ul class="rating-stars">
+                                            <?php for ($i = 1; $i <= 5; $i++): ?>
+                                            <li>
+                                                <?php if ($i <= $rank_counter): ?>
+                                                <i class="bi bi-star-fill" aria-hidden="true"></i>
+                                                <?php else: ?>
+                                                <i class="bi bi-star" aria-hidden="true"></i>
                                                 <?php endif; ?>
-                                                <?php if (!empty($banner_data['gofly_hero_banner_style_two_slider_genaral_description'])): ?>
-                                                    <?php echo wp_kses($banner_data['gofly_hero_banner_style_two_slider_genaral_description'], wp_kses_allowed_html('post'));  ?>
-                                                <?php endif; ?>
-                                            </div>
-                                        </div>
+                                            </li>
+                                            <?php endfor; ?>
+                                        </ul>
+                                        <span>)</span>
                                     </div>
                                 </div>
+                                <?php if (!empty($banner_data['gofly_hero_banner_style_two_slider_genaral_title'])): ?>
+                                <h1><?php echo esc_html($banner_data['gofly_hero_banner_style_two_slider_genaral_title']); ?>
+                                </h1>
+                                <?php endif; ?>
+                                <?php if (!empty($banner_data['gofly_hero_banner_style_two_slider_genaral_description'])): ?>
+                                <?php echo wp_kses($banner_data['gofly_hero_banner_style_two_slider_genaral_description'], wp_kses_allowed_html('post'));  ?>
+                                <?php endif; ?>
                             </div>
-                        <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
-                <?php if (!empty($settings['gofly_hero_banner_slider_genaral_show_pagination'] == 'yes')): ?>
-                    <div class="banner-pagination paginations"></div>
-                <?php endif; ?>
             </div>
-        <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <?php if (!empty($settings['gofly_hero_banner_slider_genaral_show_pagination'] == 'yes')): ?>
+    <div class="banner-pagination paginations"></div>
+    <?php endif; ?>
+</div>
+<?php endif; ?>
 
-        <?php if ($settings['gofly_hero_banner_slider_genaral_style_selection'] == 'style_three'): ?>
-            <div class="home5-banner-section">
-                <div class="swiper home2-banner-slider">
-                    <div class="swiper-wrapper">
-                        <?php foreach ($settings['gofly_hero_banner_style_three_slider_genaral_content_list'] as $banner_data): ?>
-                            <div class="swiper-slide">
-                                <div class="banner-wrapper">
+<?php if ($settings['gofly_hero_banner_slider_genaral_style_selection'] == 'style_three'): ?>
+<div class="home5-banner-section">
+    <div class="swiper home2-banner-slider">
+        <div class="swiper-wrapper">
+            <?php foreach ($settings['gofly_hero_banner_style_three_slider_genaral_content_list'] as $banner_data): ?>
+            <div class="swiper-slide">
+                <div class="banner-wrapper">
 
-                                    <?php
+                    <?php
                                     $banner_type = !empty($banner_data['gofly_hero_banner_style_three_slider_genaral_background_contant_selection'])
                                         ? $banner_data['gofly_hero_banner_style_three_slider_genaral_background_contant_selection']
                                         :  'image';
 
                                     $banner_class = ($banner_type === 'image') ? 'banner-img-area' : 'banner-video-area';
                                     ?>
-                                    <div class="<?php echo esc_attr($banner_class); ?>">
-                                        <?php
+                    <div class="<?php echo esc_attr($banner_class); ?>">
+                        <?php
                                         $selection = $banner_data['gofly_hero_banner_style_three_slider_genaral_background_contant_selection'] ?? '';
 
                                         if ($selection === 'upload_video' && !empty($banner_data['gofly_hero_banner_style_three_slider_genaral_background_contant_upload_video']['url'])): ?>
-                                            <video autoplay loop muted playsinline src="<?php echo esc_url($banner_data['gofly_hero_banner_style_three_slider_genaral_background_contant_upload_video']['url']); ?>"></video>
+                        <video autoplay loop muted playsinline
+                            src="<?php echo esc_url($banner_data['gofly_hero_banner_style_three_slider_genaral_background_contant_upload_video']['url']); ?>"></video>
 
-                                        <?php elseif ($selection === 'image' && !empty($banner_data['gofly_hero_banner_style_three_slider_genaral_background_contant_image']['url'])): ?>
-                                            <img src="<?php echo esc_url($banner_data['gofly_hero_banner_style_three_slider_genaral_background_contant_image']['url']); ?>" alt="<?php echo esc_attr__('background-image', 'gofly-core'); ?>">
+                        <?php elseif ($selection === 'image' && !empty($banner_data['gofly_hero_banner_style_three_slider_genaral_background_contant_image']['url'])): ?>
+                        <img class="banner-bg-desktop"
+                            src="<?php echo esc_url($banner_data['gofly_hero_banner_style_three_slider_genaral_background_contant_image']['url']); ?>"
+                            alt="<?php echo esc_attr__('background-image', 'gofly-core'); ?>">
+                        <?php if (!empty($banner_data['gofly_hero_banner_style_three_slider_genaral_background_contant_image_mobile']['url'])): ?>
+                        <img class="banner-bg-mobile"
+                            src="<?php echo esc_url($banner_data['gofly_hero_banner_style_three_slider_genaral_background_contant_image_mobile']['url']); ?>"
+                            alt="<?php echo esc_attr__('background-image-mobile', 'gofly-core'); ?>">
+                        <?php endif; ?>
 
-                                        <?php endif; ?>
-                                    </div>
-                                    <div class="banner-content-wrap">
-                                        <div class="container">
-                                            <div class="banner-content">
-                                                <?php if (!empty($banner_data['gofly_hero_banner_style_three_slider_genaral_title'])): ?>
-                                                    <h1><?php echo esc_html($banner_data['gofly_hero_banner_style_three_slider_genaral_title']); ?></h1>
-                                                <?php endif; ?>
-                                                <?php if (!empty($banner_data['gofly_hero_banner_style_three_slider_genaral_description'])): ?>
-                                                    <?php echo wp_kses($banner_data['gofly_hero_banner_style_three_slider_genaral_description'], wp_kses_allowed_html('post'));  ?>
-                                                <?php endif; ?>
-                                                <?php if (!empty($banner_data['gofly_hero_banner_style_three_slider_genaral_button'])): ?>
-                                                    <a href="<?php echo esc_url($banner_data['gofly_hero_banner_style_three_slider_genaral_button_url']['url']); ?>" class="primary-btn1 two">
-                                                        <span>
-                                                            <?php echo esc_html($banner_data['gofly_hero_banner_style_three_slider_genaral_button']); ?>
-                                                            <svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M9.73535 1.14746C9.57033 1.97255 9.32924 3.26406 9.24902 4.66797C9.16817 6.08312 9.25559 7.5453 9.70214 8.73633C9.84754 9.12406 9.65129 9.55659 9.26367 9.70215C8.9001 9.83849 8.4969 9.67455 8.32812 9.33398L8.29785 9.26367L8.19921 8.98438C7.73487 7.5758 7.67054 5.98959 7.75097 4.58203C7.77875 4.09598 7.82525 3.62422 7.87988 3.17969L1.53027 9.53027C1.23738 9.82317 0.762615 9.82317 0.469722 9.53027C0.176829 9.23738 0.176829 8.76262 0.469722 8.46973L6.83593 2.10254C6.3319 2.16472 5.79596 2.21841 5.25 2.24902C3.8302 2.32862 2.2474 2.26906 0.958003 1.79102L0.704097 1.68945L0.635738 1.65527C0.303274 1.47099 0.157578 1.06102 0.310542 0.704102C0.463655 0.347333 0.860941 0.170391 1.22363 0.28418L1.29589 0.310547L1.48828 0.387695C2.47399 0.751207 3.79966 0.827571 5.16601 0.750977C6.60111 0.670504 7.97842 0.428235 8.86132 0.262695L9.95312 0.0585938L9.73535 1.14746Z"></path>
-                                                            </svg>
-                                                        </span>
-                                                        <span>
-                                                            <?php echo esc_html($banner_data['gofly_hero_banner_style_three_slider_genaral_button']); ?>
-                                                            <svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M9.73535 1.14746C9.57033 1.97255 9.32924 3.26406 9.24902 4.66797C9.16817 6.08312 9.25559 7.5453 9.70214 8.73633C9.84754 9.12406 9.65129 9.55659 9.26367 9.70215C8.9001 9.83849 8.4969 9.67455 8.32812 9.33398L8.29785 9.26367L8.19921 8.98438C7.73487 7.5758 7.67054 5.98959 7.75097 4.58203C7.77875 4.09598 7.82525 3.62422 7.87988 3.17969L1.53027 9.53027C1.23738 9.82317 0.762615 9.82317 0.469722 9.53027C0.176829 9.23738 0.176829 8.76262 0.469722 8.46973L6.83593 2.10254C6.3319 2.16472 5.79596 2.21841 5.25 2.24902C3.8302 2.32862 2.2474 2.26906 0.958003 1.79102L0.704097 1.68945L0.635738 1.65527C0.303274 1.47099 0.157578 1.06102 0.310542 0.704102C0.463655 0.347333 0.860941 0.170391 1.22363 0.28418L1.29589 0.310547L1.48828 0.387695C2.47399 0.751207 3.79966 0.827571 5.16601 0.750977C6.60111 0.670504 7.97842 0.428235 8.86132 0.262695L9.95312 0.0585938L9.73535 1.14746Z"></path>
-                                                            </svg>
-                                                        </span>
-                                                    </a>
-                                                <?php endif; ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
-                    <?php if ($settings['gofly_hero_banner_slider_genaral_show_pagination'] == 'yes'): ?>
-                        <div class="slider-btn-grp">
-                            <div class="slider-btn banner-slider-prev">
-                                <svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
-                                    <g>
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 10.0571H22V11.9428H0V10.0571Z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M0.942857 11.9429C5.3768 11.9429 9.00115 8.0432 9.00115 3.88457V2.94171H7.11543V3.88457C7.11543 7.04251 4.29566 10.0571 0.942857 10.0571H0V11.9429H0.942857Z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M0.942857 10.0571C5.3768 10.0571 9.00115 13.9568 9.00115 18.1154V19.0583H7.11543V18.1154C7.11543 14.9587 4.29566 11.9428 0.942857 11.9428H0V10.0571H0.942857Z" />
-                                    </g>
-                                </svg>
-                            </div>
-                            <div class="slider-btn banner-slider-next">
-                                <svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
-                                    <g>
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M22 10.0571H-5.72205e-06V11.9428H22V10.0571Z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M21.0571 11.9429C16.6232 11.9429 12.9989 8.0432 12.9989 3.88457V2.94171H14.8846V3.88457C14.8846 7.04251 17.7043 10.0571 21.0571 10.0571H22V11.9429H21.0571Z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M21.0571 10.0571C16.6232 10.0571 12.9989 13.9568 12.9989 18.1154V19.0583H14.8846V18.1154C14.8846 14.9587 17.7043 11.9428 21.0571 11.9428H22V10.0571H21.0571Z" />
-                                    </g>
-                                </svg>
+                    <div class="banner-content-wrap">
+                        <div class="container">
+                            <div class="banner-content">
+                                <?php if (!empty($banner_data['gofly_hero_banner_style_three_slider_genaral_title'])): ?>
+                                <h1><?php echo esc_html($banner_data['gofly_hero_banner_style_three_slider_genaral_title']); ?>
+                                </h1>
+                                <?php endif; ?>
+                                <?php if (!empty($banner_data['gofly_hero_banner_style_three_slider_genaral_description'])): ?>
+                                <?php echo wp_kses($banner_data['gofly_hero_banner_style_three_slider_genaral_description'], wp_kses_allowed_html('post'));  ?>
+                                <?php endif; ?>
+                                <?php if (!empty($banner_data['gofly_hero_banner_style_three_slider_genaral_button'])): ?>
+                                <a href="<?php echo esc_url($banner_data['gofly_hero_banner_style_three_slider_genaral_button_url']['url']); ?>"
+                                    class="primary-btn1 two">
+                                    <span>
+                                        <?php echo esc_html($banner_data['gofly_hero_banner_style_three_slider_genaral_button']); ?>
+                                        <svg width="10" height="10" viewBox="0 0 10 10"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M9.73535 1.14746C9.57033 1.97255 9.32924 3.26406 9.24902 4.66797C9.16817 6.08312 9.25559 7.5453 9.70214 8.73633C9.84754 9.12406 9.65129 9.55659 9.26367 9.70215C8.9001 9.83849 8.4969 9.67455 8.32812 9.33398L8.29785 9.26367L8.19921 8.98438C7.73487 7.5758 7.67054 5.98959 7.75097 4.58203C7.77875 4.09598 7.82525 3.62422 7.87988 3.17969L1.53027 9.53027C1.23738 9.82317 0.762615 9.82317 0.469722 9.53027C0.176829 9.23738 0.176829 8.76262 0.469722 8.46973L6.83593 2.10254C6.3319 2.16472 5.79596 2.21841 5.25 2.24902C3.8302 2.32862 2.2474 2.26906 0.958003 1.79102L0.704097 1.68945L0.635738 1.65527C0.303274 1.47099 0.157578 1.06102 0.310542 0.704102C0.463655 0.347333 0.860941 0.170391 1.22363 0.28418L1.29589 0.310547L1.48828 0.387695C2.47399 0.751207 3.79966 0.827571 5.16601 0.750977C6.60111 0.670504 7.97842 0.428235 8.86132 0.262695L9.95312 0.0585938L9.73535 1.14746Z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <span>
+                                        <?php echo esc_html($banner_data['gofly_hero_banner_style_three_slider_genaral_button']); ?>
+                                        <svg width="10" height="10" viewBox="0 0 10 10"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M9.73535 1.14746C9.57033 1.97255 9.32924 3.26406 9.24902 4.66797C9.16817 6.08312 9.25559 7.5453 9.70214 8.73633C9.84754 9.12406 9.65129 9.55659 9.26367 9.70215C8.9001 9.83849 8.4969 9.67455 8.32812 9.33398L8.29785 9.26367L8.19921 8.98438C7.73487 7.5758 7.67054 5.98959 7.75097 4.58203C7.77875 4.09598 7.82525 3.62422 7.87988 3.17969L1.53027 9.53027C1.23738 9.82317 0.762615 9.82317 0.469722 9.53027C0.176829 9.23738 0.176829 8.76262 0.469722 8.46973L6.83593 2.10254C6.3319 2.16472 5.79596 2.21841 5.25 2.24902C3.8302 2.32862 2.2474 2.26906 0.958003 1.79102L0.704097 1.68945L0.635738 1.65527C0.303274 1.47099 0.157578 1.06102 0.310542 0.704102C0.463655 0.347333 0.860941 0.170391 1.22363 0.28418L1.29589 0.310547L1.48828 0.387695C2.47399 0.751207 3.79966 0.827571 5.16601 0.750977C6.60111 0.670504 7.97842 0.428235 8.86132 0.262695L9.95312 0.0585938L9.73535 1.14746Z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                </a>
+                                <?php endif; ?>
                             </div>
                         </div>
-                    <?php endif; ?>
+                    </div>
                 </div>
             </div>
+            <?php endforeach; ?>
+        </div>
+        <?php if ($settings['gofly_hero_banner_slider_genaral_show_pagination'] == 'yes'): ?>
+        <div class="slider-btn-grp">
+            <div class="slider-btn banner-slider-prev">
+                <svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 10.0571H22V11.9428H0V10.0571Z" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M0.942857 11.9429C5.3768 11.9429 9.00115 8.0432 9.00115 3.88457V2.94171H7.11543V3.88457C7.11543 7.04251 4.29566 10.0571 0.942857 10.0571H0V11.9429H0.942857Z" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M0.942857 10.0571C5.3768 10.0571 9.00115 13.9568 9.00115 18.1154V19.0583H7.11543V18.1154C7.11543 14.9587 4.29566 11.9428 0.942857 11.9428H0V10.0571H0.942857Z" />
+                    </g>
+                </svg>
+            </div>
+            <div class="slider-btn banner-slider-next">
+                <svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M22 10.0571H-5.72205e-06V11.9428H22V10.0571Z" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M21.0571 11.9429C16.6232 11.9429 12.9989 8.0432 12.9989 3.88457V2.94171H14.8846V3.88457C14.8846 7.04251 17.7043 10.0571 21.0571 10.0571H22V11.9429H21.0571Z" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M21.0571 10.0571C16.6232 10.0571 12.9989 13.9568 12.9989 18.1154V19.0583H14.8846V18.1154C14.8846 14.9587 17.7043 11.9428 21.0571 11.9428H22V10.0571H21.0571Z" />
+                    </g>
+                </svg>
+            </div>
+        </div>
         <?php endif; ?>
+    </div>
+</div>
+<?php endif; ?>
 
-        <?php if ($settings['gofly_hero_banner_slider_genaral_style_selection'] == 'style_four'): ?>
-            <div class="home6-banner-section">
-                <div class="swiper home6-banner-slider">
-                    <div class="swiper-wrapper">
-                        <?php foreach ($settings['gofly_hero_banner_style_four_slider_genaral_content_list'] as $banner_data): ?>
-                            <div class="swiper-slide">
-                                <div class="banner-wrapper">
-                                    <?php
+<?php if ($settings['gofly_hero_banner_slider_genaral_style_selection'] == 'style_four'): ?>
+<div class="home6-banner-section">
+    <div class="swiper home6-banner-slider">
+        <div class="swiper-wrapper">
+            <?php foreach ($settings['gofly_hero_banner_style_four_slider_genaral_content_list'] as $banner_data): ?>
+            <div class="swiper-slide">
+                <div class="banner-wrapper">
+                    <?php
                                     $banner_type = !empty($banner_data['gofly_hero_banner_style_four_slider_genaral_background_contant_selection'])
                                         ? $banner_data['gofly_hero_banner_style_four_slider_genaral_background_contant_selection']
                                         :  'image';
 
                                     $banner_class = ($banner_type === 'image') ? 'banner-img-area' : 'banner-video-area';
                                     ?>
-                                    <div class="<?php echo esc_attr($banner_class); ?>">
-                                        <?php
+                    <div class="<?php echo esc_attr($banner_class); ?>">
+                        <?php
                                         $selection = $banner_data['gofly_hero_banner_style_four_slider_genaral_background_contant_selection'] ?? '';
 
                                         if ($selection === 'upload_video' && !empty($banner_data['gofly_hero_banner_style_four_slider_genaral_background_contant_upload_video']['url'])): ?>
-                                            <video autoplay loop muted playsinline src="<?php echo esc_url($banner_data['gofly_hero_banner_style_four_slider_genaral_background_contant_upload_video']['url']); ?>"></video>
+                        <video autoplay loop muted playsinline
+                            src="<?php echo esc_url($banner_data['gofly_hero_banner_style_four_slider_genaral_background_contant_upload_video']['url']); ?>"></video>
 
-                                        <?php elseif ($selection === 'image' && !empty($banner_data['gofly_hero_banner_style_four_slider_genaral_background_contant_image']['url'])): ?>
-                                            <img src="<?php echo esc_url($banner_data['gofly_hero_banner_style_four_slider_genaral_background_contant_image']['url']); ?>" alt="<?php echo esc_attr__('background-image', 'gofly-core'); ?>">
+                        <?php elseif ($selection === 'image' && !empty($banner_data['gofly_hero_banner_style_four_slider_genaral_background_contant_image']['url'])): ?>
+                        <img class="banner-bg-desktop"
+                            src="<?php echo esc_url($banner_data['gofly_hero_banner_style_four_slider_genaral_background_contant_image']['url']); ?>"
+                            alt="<?php echo esc_attr__('background-image', 'gofly-core'); ?>">
+                        <?php if (!empty($banner_data['gofly_hero_banner_style_four_slider_genaral_background_contant_image_mobile']['url'])): ?>
+                        <img class="banner-bg-mobile"
+                            src="<?php echo esc_url($banner_data['gofly_hero_banner_style_four_slider_genaral_background_contant_image_mobile']['url']); ?>"
+                            alt="<?php echo esc_attr__('background-image-mobile', 'gofly-core'); ?>">
+                        <?php endif; ?>
 
-                                        <?php endif; ?>
-                                    </div>
-                                    <div class="banner-content-wrap">
-                                        <div class="container">
-                                            <div class="banner-content two">
-                                                <?php if (!empty($banner_data['gofly_hero_banner_style_four_slider_genaral_title'])): ?>
-                                                    <h2><?php echo wp_kses($banner_data['gofly_hero_banner_style_four_slider_genaral_title'], wp_kses_allowed_html('post'));  ?></h2>
-                                                <?php endif; ?>
-                                                <?php if (!empty($banner_data['gofly_hero_banner_style_four_slider_genaral_button'])): ?>
-                                                    <a href="<?php echo esc_url($banner_data['gofly_hero_banner_style_four_slider_genaral_button_url']['url']); ?>" class="primary-btn1 two">
-                                                        <span>
-                                                            <?php echo esc_html($banner_data['gofly_hero_banner_style_four_slider_genaral_button']); ?>
-                                                            <svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M9.73535 1.14746C9.57033 1.97255 9.32924 3.26406 9.24902 4.66797C9.16817 6.08312 9.25559 7.5453 9.70214 8.73633C9.84754 9.12406 9.65129 9.55659 9.26367 9.70215C8.9001 9.83849 8.4969 9.67455 8.32812 9.33398L8.29785 9.26367L8.19921 8.98438C7.73487 7.5758 7.67054 5.98959 7.75097 4.58203C7.77875 4.09598 7.82525 3.62422 7.87988 3.17969L1.53027 9.53027C1.23738 9.82317 0.762615 9.82317 0.469722 9.53027C0.176829 9.23738 0.176829 8.76262 0.469722 8.46973L6.83593 2.10254C6.3319 2.16472 5.79596 2.21841 5.25 2.24902C3.8302 2.32862 2.2474 2.26906 0.958003 1.79102L0.704097 1.68945L0.635738 1.65527C0.303274 1.47099 0.157578 1.06102 0.310542 0.704102C0.463655 0.347333 0.860941 0.170391 1.22363 0.28418L1.29589 0.310547L1.48828 0.387695C2.47399 0.751207 3.79966 0.827571 5.16601 0.750977C6.60111 0.670504 7.97842 0.428235 8.86132 0.262695L9.95312 0.0585938L9.73535 1.14746Z"></path>
-                                                            </svg>
-                                                        </span>
-                                                        <span>
-                                                            <?php echo esc_html($banner_data['gofly_hero_banner_style_four_slider_genaral_button']); ?>
-                                                            <svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M9.73535 1.14746C9.57033 1.97255 9.32924 3.26406 9.24902 4.66797C9.16817 6.08312 9.25559 7.5453 9.70214 8.73633C9.84754 9.12406 9.65129 9.55659 9.26367 9.70215C8.9001 9.83849 8.4969 9.67455 8.32812 9.33398L8.29785 9.26367L8.19921 8.98438C7.73487 7.5758 7.67054 5.98959 7.75097 4.58203C7.77875 4.09598 7.82525 3.62422 7.87988 3.17969L1.53027 9.53027C1.23738 9.82317 0.762615 9.82317 0.469722 9.53027C0.176829 9.23738 0.176829 8.76262 0.469722 8.46973L6.83593 2.10254C6.3319 2.16472 5.79596 2.21841 5.25 2.24902C3.8302 2.32862 2.2474 2.26906 0.958003 1.79102L0.704097 1.68945L0.635738 1.65527C0.303274 1.47099 0.157578 1.06102 0.310542 0.704102C0.463655 0.347333 0.860941 0.170391 1.22363 0.28418L1.29589 0.310547L1.48828 0.387695C2.47399 0.751207 3.79966 0.827571 5.16601 0.750977C6.60111 0.670504 7.97842 0.428235 8.86132 0.262695L9.95312 0.0585938L9.73535 1.14746Z"></path>
-                                                            </svg>
-                                                        </span>
-                                                    </a>
-                                                <?php endif; ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
-                    <?php if ($settings['gofly_hero_banner_slider_genaral_show_pagination'] == 'yes'): ?>
-                        <div class="slider-btn-grp">
-                            <div class="slider-btn banner-slider-prev">
-                                <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                                    <g clip-path="url(#clip0_1151_22708)">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8.68555 0L8.68555 16H7.31412L7.31412 0L8.68555 0Z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M7.31406 0.685714C7.31406 3.9104 10.1502 6.54629 13.1746 6.54629H13.8604V5.17486H13.1746C10.878 5.17486 8.68549 3.12412 8.68549 0.685714V0L7.31406 0V0.685714Z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M8.68555 0.685714C8.68555 3.9104 5.84943 6.54629 2.82497 6.54629H2.13926V5.17486H2.82497C5.12075 5.17486 7.31412 3.12412 7.31412 0.685714V0L8.68555 0V0.685714Z" />
-                                    </g>
-                                </svg>
-                            </div>
-                            <div class="franctional-pagi1"></div>
-                            <div class="slider-btn banner-slider-next">
-                                <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                                    <g clip-path="url(#clip0_1151_22699)">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8.68579 16L8.68579 -3.8147e-06H7.31436L7.31436 16H8.68579Z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M7.31431 15.3143C7.31431 12.0896 10.1504 9.45371 13.1749 9.45371H13.8606V10.8251H13.1749C10.8782 10.8251 8.68574 12.8759 8.68574 15.3143V16H7.31431V15.3143Z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M8.68579 15.3143C8.68579 12.0896 5.84968 9.45371 2.82522 9.45371H2.1395V10.8251H2.82522C5.12099 10.8251 7.31436 12.8759 7.31436 15.3143V16H8.68579V15.3143Z" />
-                                    </g>
-                                </svg>
+                    <div class="banner-content-wrap">
+                        <div class="container">
+                            <div class="banner-content two">
+                                <?php if (!empty($banner_data['gofly_hero_banner_style_four_slider_genaral_title'])): ?>
+                                <h2><?php echo wp_kses($banner_data['gofly_hero_banner_style_four_slider_genaral_title'], wp_kses_allowed_html('post'));  ?>
+                                </h2>
+                                <?php endif; ?>
+                                <?php if (!empty($banner_data['gofly_hero_banner_style_four_slider_genaral_button'])): ?>
+                                <a href="<?php echo esc_url($banner_data['gofly_hero_banner_style_four_slider_genaral_button_url']['url']); ?>"
+                                    class="primary-btn1 two">
+                                    <span>
+                                        <?php echo esc_html($banner_data['gofly_hero_banner_style_four_slider_genaral_button']); ?>
+                                        <svg width="10" height="10" viewBox="0 0 10 10"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M9.73535 1.14746C9.57033 1.97255 9.32924 3.26406 9.24902 4.66797C9.16817 6.08312 9.25559 7.5453 9.70214 8.73633C9.84754 9.12406 9.65129 9.55659 9.26367 9.70215C8.9001 9.83849 8.4969 9.67455 8.32812 9.33398L8.29785 9.26367L8.19921 8.98438C7.73487 7.5758 7.67054 5.98959 7.75097 4.58203C7.77875 4.09598 7.82525 3.62422 7.87988 3.17969L1.53027 9.53027C1.23738 9.82317 0.762615 9.82317 0.469722 9.53027C0.176829 9.23738 0.176829 8.76262 0.469722 8.46973L6.83593 2.10254C6.3319 2.16472 5.79596 2.21841 5.25 2.24902C3.8302 2.32862 2.2474 2.26906 0.958003 1.79102L0.704097 1.68945L0.635738 1.65527C0.303274 1.47099 0.157578 1.06102 0.310542 0.704102C0.463655 0.347333 0.860941 0.170391 1.22363 0.28418L1.29589 0.310547L1.48828 0.387695C2.47399 0.751207 3.79966 0.827571 5.16601 0.750977C6.60111 0.670504 7.97842 0.428235 8.86132 0.262695L9.95312 0.0585938L9.73535 1.14746Z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <span>
+                                        <?php echo esc_html($banner_data['gofly_hero_banner_style_four_slider_genaral_button']); ?>
+                                        <svg width="10" height="10" viewBox="0 0 10 10"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M9.73535 1.14746C9.57033 1.97255 9.32924 3.26406 9.24902 4.66797C9.16817 6.08312 9.25559 7.5453 9.70214 8.73633C9.84754 9.12406 9.65129 9.55659 9.26367 9.70215C8.9001 9.83849 8.4969 9.67455 8.32812 9.33398L8.29785 9.26367L8.19921 8.98438C7.73487 7.5758 7.67054 5.98959 7.75097 4.58203C7.77875 4.09598 7.82525 3.62422 7.87988 3.17969L1.53027 9.53027C1.23738 9.82317 0.762615 9.82317 0.469722 9.53027C0.176829 9.23738 0.176829 8.76262 0.469722 8.46973L6.83593 2.10254C6.3319 2.16472 5.79596 2.21841 5.25 2.24902C3.8302 2.32862 2.2474 2.26906 0.958003 1.79102L0.704097 1.68945L0.635738 1.65527C0.303274 1.47099 0.157578 1.06102 0.310542 0.704102C0.463655 0.347333 0.860941 0.170391 1.22363 0.28418L1.29589 0.310547L1.48828 0.387695C2.47399 0.751207 3.79966 0.827571 5.16601 0.750977C6.60111 0.670504 7.97842 0.428235 8.86132 0.262695L9.95312 0.0585938L9.73535 1.14746Z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                </a>
+                                <?php endif; ?>
                             </div>
                         </div>
-                    <?php endif; ?>
-                    <ul class="social-list">
-                        <?php foreach ($settings['gofly_hero_banner_style_four_slider_genaral_social_icon_list'] as $social_data): ?>
-                            <?php $icon = $social_data['gofly_hero_banner_style_four_slider_genaral_social_icon']; ?>
-                            <?php if (!empty($icon['value'])): ?>
-                                <li><a href="<?php echo esc_url($social_data['gofly_hero_banner_style_four_slider_genaral_social_icon_url']['url']); ?>"><i class="<?php echo esc_attr($icon['value']); ?>"></i></a></li>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </ul>
+                    </div>
                 </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+        <?php if ($settings['gofly_hero_banner_slider_genaral_show_pagination'] == 'yes'): ?>
+        <div class="slider-btn-grp">
+            <div class="slider-btn banner-slider-prev">
+                <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_1151_22708)">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M8.68555 0L8.68555 16H7.31412L7.31412 0L8.68555 0Z" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M7.31406 0.685714C7.31406 3.9104 10.1502 6.54629 13.1746 6.54629H13.8604V5.17486H13.1746C10.878 5.17486 8.68549 3.12412 8.68549 0.685714V0L7.31406 0V0.685714Z" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M8.68555 0.685714C8.68555 3.9104 5.84943 6.54629 2.82497 6.54629H2.13926V5.17486H2.82497C5.12075 5.17486 7.31412 3.12412 7.31412 0.685714V0L8.68555 0V0.685714Z" />
+                    </g>
+                </svg>
+            </div>
+            <div class="franctional-pagi1"></div>
+            <div class="slider-btn banner-slider-next">
+                <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_1151_22699)">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M8.68579 16L8.68579 -3.8147e-06H7.31436L7.31436 16H8.68579Z" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M7.31431 15.3143C7.31431 12.0896 10.1504 9.45371 13.1749 9.45371H13.8606V10.8251H13.1749C10.8782 10.8251 8.68574 12.8759 8.68574 15.3143V16H7.31431V15.3143Z" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M8.68579 15.3143C8.68579 12.0896 5.84968 9.45371 2.82522 9.45371H2.1395V10.8251H2.82522C5.12099 10.8251 7.31436 12.8759 7.31436 15.3143V16H8.68579V15.3143Z" />
+                    </g>
+                </svg>
+            </div>
+        </div>
+        <?php endif; ?>
+        <ul class="social-list">
+            <?php foreach ($settings['gofly_hero_banner_style_four_slider_genaral_social_icon_list'] as $social_data): ?>
+            <?php $icon = $social_data['gofly_hero_banner_style_four_slider_genaral_social_icon']; ?>
+            <?php if (!empty($icon['value'])): ?>
+            <li><a
+                    href="<?php echo esc_url($social_data['gofly_hero_banner_style_four_slider_genaral_social_icon_url']['url']); ?>"><i
+                        class="<?php echo esc_attr($icon['value']); ?>"></i></a></li>
             <?php endif; ?>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    <?php endif; ?>
 
-            <?php if ($settings['gofly_hero_banner_slider_genaral_style_selection'] == 'style_five'): ?>
-                <div class="home7-banner-section">
-                    <div class="swiper home6-banner-slider">
-                        <div class="swiper-wrapper">
-                            <?php foreach ($settings['gofly_hero_banner_style_five_slider_genaral_content_list'] as $banner_data): ?>
-                                <div class="swiper-slide">
-                                    <div class="banner-wrapper">
-                                        <?php
+    <?php if ($settings['gofly_hero_banner_slider_genaral_style_selection'] == 'style_five'): ?>
+    <div class="home7-banner-section">
+        <div class="swiper home6-banner-slider">
+            <div class="swiper-wrapper">
+                <?php foreach ($settings['gofly_hero_banner_style_five_slider_genaral_content_list'] as $banner_data): ?>
+                <div class="swiper-slide">
+                    <div class="banner-wrapper">
+                        <?php
                                         $banner_type = !empty($banner_data['gofly_hero_banner_style_five_slider_genaral_background_contant_selection'])
                                             ? $banner_data['gofly_hero_banner_style_five_slider_genaral_background_contant_selection']
                                             :  'image';
 
                                         $banner_class = ($banner_type === 'image') ? 'banner-img-area' : 'banner-video-area';
                                         ?>
-                                        <div class="<?php echo esc_attr($banner_class); ?>">
-                                            <?php
+                        <div class="<?php echo esc_attr($banner_class); ?>">
+                            <?php
                                             $selection = $banner_data['gofly_hero_banner_style_five_slider_genaral_background_contant_selection'] ?? '';
 
                                             if ($selection === 'upload_video' && !empty($banner_data['gofly_hero_banner_style_five_slider_genaral_background_contant_upload_video']['url'])): ?>
-                                                <video autoplay loop muted playsinline src="<?php echo esc_url($banner_data['gofly_hero_banner_style_five_slider_genaral_background_contant_upload_video']['url']); ?>"></video>
+                            <video autoplay loop muted playsinline
+                                src="<?php echo esc_url($banner_data['gofly_hero_banner_style_five_slider_genaral_background_contant_upload_video']['url']); ?>"></video>
 
-                                            <?php elseif ($selection === 'image' && !empty($banner_data['gofly_hero_banner_style_five_slider_genaral_background_contant_image']['url'])): ?>
-                                                <img src="<?php echo esc_url($banner_data['gofly_hero_banner_style_five_slider_genaral_background_contant_image']['url']); ?>" alt="<?php echo esc_attr__('background-image', 'gofly-core'); ?>">
+                            <?php elseif ($selection === 'image' && !empty($banner_data['gofly_hero_banner_style_five_slider_genaral_background_contant_image']['url'])): ?>
+                            <img class="banner-bg-desktop"
+                                src="<?php echo esc_url($banner_data['gofly_hero_banner_style_five_slider_genaral_background_contant_image']['url']); ?>"
+                                alt="<?php echo esc_attr__('background-image', 'gofly-core'); ?>">
+                            <?php if (!empty($banner_data['gofly_hero_banner_style_five_slider_genaral_background_contant_image_mobile']['url'])): ?>
+                            <img class="banner-bg-mobile"
+                                src="<?php echo esc_url($banner_data['gofly_hero_banner_style_five_slider_genaral_background_contant_image_mobile']['url']); ?>"
+                                alt="<?php echo esc_attr__('background-image-mobile', 'gofly-core'); ?>">
+                            <?php endif; ?>
 
-                                            <?php endif; ?>
-                                        </div>
-                                        <div class="banner-content-wrap">
-                                            <div class="container">
-                                                <div class="banner-content">
-                                                    <?php if (!empty($banner_data['gofly_hero_banner_style_five_slider_genaral_subtitle'])): ?>
-                                                        <span><?php echo esc_html($banner_data['gofly_hero_banner_style_five_slider_genaral_subtitle']); ?></span>
-                                                    <?php endif; ?>
-                                                    <?php if (!empty($banner_data['gofly_hero_banner_style_five_slider_genaral_title'])): ?>
-                                                        <h1><?php echo wp_kses($banner_data['gofly_hero_banner_style_five_slider_genaral_title'], wp_kses_allowed_html('post'));  ?></h1>
-                                                    <?php endif; ?>
-                                                    <?php if (!empty($banner_data['gofly_hero_banner_style_five_slider_genaral_button'])): ?>
-                                                        <a href="<?php echo esc_url($banner_data['gofly_hero_banner_style_five_slider_genaral_button_url']['url']); ?>" class="primary-btn1 four two white-bg">
-                                                            <span>
-                                                                <?php echo esc_html($banner_data['gofly_hero_banner_style_five_slider_genaral_button']); ?>
-                                                                <svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M9.73535 1.14746C9.57033 1.97255 9.32924 3.26406 9.24902 4.66797C9.16817 6.08312 9.25559 7.5453 9.70214 8.73633C9.84754 9.12406 9.65129 9.55659 9.26367 9.70215C8.9001 9.83849 8.4969 9.67455 8.32812 9.33398L8.29785 9.26367L8.19921 8.98438C7.73487 7.5758 7.67054 5.98959 7.75097 4.58203C7.77875 4.09598 7.82525 3.62422 7.87988 3.17969L1.53027 9.53027C1.23738 9.82317 0.762615 9.82317 0.469722 9.53027C0.176829 9.23738 0.176829 8.76262 0.469722 8.46973L6.83593 2.10254C6.3319 2.16472 5.79596 2.21841 5.25 2.24902C3.8302 2.32862 2.2474 2.26906 0.958003 1.79102L0.704097 1.68945L0.635738 1.65527C0.303274 1.47099 0.157578 1.06102 0.310542 0.704102C0.463655 0.347333 0.860941 0.170391 1.22363 0.28418L1.29589 0.310547L1.48828 0.387695C2.47399 0.751207 3.79966 0.827571 5.16601 0.750977C6.60111 0.670504 7.97842 0.428235 8.86132 0.262695L9.95312 0.0585938L9.73535 1.14746Z"></path>
-                                                                </svg>
-                                                            </span>
-                                                            <span>
-                                                                <?php echo esc_html($banner_data['gofly_hero_banner_style_five_slider_genaral_button']); ?>
-                                                                <svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M9.73535 1.14746C9.57033 1.97255 9.32924 3.26406 9.24902 4.66797C9.16817 6.08312 9.25559 7.5453 9.70214 8.73633C9.84754 9.12406 9.65129 9.55659 9.26367 9.70215C8.9001 9.83849 8.4969 9.67455 8.32812 9.33398L8.29785 9.26367L8.19921 8.98438C7.73487 7.5758 7.67054 5.98959 7.75097 4.58203C7.77875 4.09598 7.82525 3.62422 7.87988 3.17969L1.53027 9.53027C1.23738 9.82317 0.762615 9.82317 0.469722 9.53027C0.176829 9.23738 0.176829 8.76262 0.469722 8.46973L6.83593 2.10254C6.3319 2.16472 5.79596 2.21841 5.25 2.24902C3.8302 2.32862 2.2474 2.26906 0.958003 1.79102L0.704097 1.68945L0.635738 1.65527C0.303274 1.47099 0.157578 1.06102 0.310542 0.704102C0.463655 0.347333 0.860941 0.170391 1.22363 0.28418L1.29589 0.310547L1.48828 0.387695C2.47399 0.751207 3.79966 0.827571 5.16601 0.750977C6.60111 0.670504 7.97842 0.428235 8.86132 0.262695L9.95312 0.0585938L9.73535 1.14746Z"></path>
-                                                                </svg>
-                                                            </span>
-                                                        </a>
-                                                    <?php endif; ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <?php endif; ?>
+                        </div>
+                        <div class="banner-content-wrap">
+                            <div class="container">
+                                <div class="banner-content">
+                                    <?php if (!empty($banner_data['gofly_hero_banner_style_five_slider_genaral_subtitle'])): ?>
+                                    <span><?php echo esc_html($banner_data['gofly_hero_banner_style_five_slider_genaral_subtitle']); ?></span>
+                                    <?php endif; ?>
+                                    <?php if (!empty($banner_data['gofly_hero_banner_style_five_slider_genaral_title'])): ?>
+                                    <h1><?php echo wp_kses($banner_data['gofly_hero_banner_style_five_slider_genaral_title'], wp_kses_allowed_html('post'));  ?>
+                                    </h1>
+                                    <?php endif; ?>
+                                    <?php if (!empty($banner_data['gofly_hero_banner_style_five_slider_genaral_button'])): ?>
+                                    <a href="<?php echo esc_url($banner_data['gofly_hero_banner_style_five_slider_genaral_button_url']['url']); ?>"
+                                        class="primary-btn1 four two white-bg">
+                                        <span>
+                                            <?php echo esc_html($banner_data['gofly_hero_banner_style_five_slider_genaral_button']); ?>
+                                            <svg width="10" height="10" viewBox="0 0 10 10"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M9.73535 1.14746C9.57033 1.97255 9.32924 3.26406 9.24902 4.66797C9.16817 6.08312 9.25559 7.5453 9.70214 8.73633C9.84754 9.12406 9.65129 9.55659 9.26367 9.70215C8.9001 9.83849 8.4969 9.67455 8.32812 9.33398L8.29785 9.26367L8.19921 8.98438C7.73487 7.5758 7.67054 5.98959 7.75097 4.58203C7.77875 4.09598 7.82525 3.62422 7.87988 3.17969L1.53027 9.53027C1.23738 9.82317 0.762615 9.82317 0.469722 9.53027C0.176829 9.23738 0.176829 8.76262 0.469722 8.46973L6.83593 2.10254C6.3319 2.16472 5.79596 2.21841 5.25 2.24902C3.8302 2.32862 2.2474 2.26906 0.958003 1.79102L0.704097 1.68945L0.635738 1.65527C0.303274 1.47099 0.157578 1.06102 0.310542 0.704102C0.463655 0.347333 0.860941 0.170391 1.22363 0.28418L1.29589 0.310547L1.48828 0.387695C2.47399 0.751207 3.79966 0.827571 5.16601 0.750977C6.60111 0.670504 7.97842 0.428235 8.86132 0.262695L9.95312 0.0585938L9.73535 1.14746Z">
+                                                </path>
+                                            </svg>
+                                        </span>
+                                        <span>
+                                            <?php echo esc_html($banner_data['gofly_hero_banner_style_five_slider_genaral_button']); ?>
+                                            <svg width="10" height="10" viewBox="0 0 10 10"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M9.73535 1.14746C9.57033 1.97255 9.32924 3.26406 9.24902 4.66797C9.16817 6.08312 9.25559 7.5453 9.70214 8.73633C9.84754 9.12406 9.65129 9.55659 9.26367 9.70215C8.9001 9.83849 8.4969 9.67455 8.32812 9.33398L8.29785 9.26367L8.19921 8.98438C7.73487 7.5758 7.67054 5.98959 7.75097 4.58203C7.77875 4.09598 7.82525 3.62422 7.87988 3.17969L1.53027 9.53027C1.23738 9.82317 0.762615 9.82317 0.469722 9.53027C0.176829 9.23738 0.176829 8.76262 0.469722 8.46973L6.83593 2.10254C6.3319 2.16472 5.79596 2.21841 5.25 2.24902C3.8302 2.32862 2.2474 2.26906 0.958003 1.79102L0.704097 1.68945L0.635738 1.65527C0.303274 1.47099 0.157578 1.06102 0.310542 0.704102C0.463655 0.347333 0.860941 0.170391 1.22363 0.28418L1.29589 0.310547L1.48828 0.387695C2.47399 0.751207 3.79966 0.827571 5.16601 0.750977C6.60111 0.670504 7.97842 0.428235 8.86132 0.262695L9.95312 0.0585938L9.73535 1.14746Z">
+                                                </path>
+                                            </svg>
+                                        </span>
+                                    </a>
+                                    <?php endif; ?>
                                 </div>
-                            <?php endforeach; ?>
+                            </div>
                         </div>
                     </div>
-                    <?php if ($settings['gofly_hero_banner_slider_genaral_show_pagination'] == 'yes'): ?>
-                        <div class="slider-btn-grp">
-                            <div class="slider-btn banner-slider-prev">
-                                <svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
-                                    <g>
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 10.0571H22V11.9428H0V10.0571Z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M0.942857 11.9429C5.3768 11.9429 9.00115 8.0432 9.00115 3.88457V2.94171H7.11543V3.88457C7.11543 7.04251 4.29566 10.0571 0.942857 10.0571H0V11.9429H0.942857Z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M0.942857 10.0571C5.3768 10.0571 9.00115 13.9568 9.00115 18.1154V19.0583H7.11543V18.1154C7.11543 14.9587 4.29566 11.9428 0.942857 11.9428H0V10.0571H0.942857Z" />
-                                    </g>
-                                </svg>
-                            </div>
-                            <div class="slider-btn banner-slider-next">
-                                <svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
-                                    <g clip-path="url(#clip0_1151_27911)">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M22 10.0571H-5.72205e-06V11.9428H22V10.0571Z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M21.0571 11.9429C16.6232 11.9429 12.9989 8.0432 12.9989 3.88457V2.94171H14.8846V3.88457C14.8846 7.04251 17.7043 10.0571 21.0571 10.0571H22V11.9429H21.0571Z" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M21.0571 10.0571C16.6232 10.0571 12.9989 13.9568 12.9989 18.1154V19.0583H14.8846V18.1154C14.8846 14.9587 17.7043 11.9428 21.0571 11.9428H22V10.0571H21.0571Z" />
-                                    </g>
-                                </svg>
-                            </div>
-                        </div>
-                    <?php endif; ?>
                 </div>
-            <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php if ($settings['gofly_hero_banner_slider_genaral_show_pagination'] == 'yes'): ?>
+        <div class="slider-btn-grp">
+            <div class="slider-btn banner-slider-prev">
+                <svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 10.0571H22V11.9428H0V10.0571Z" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M0.942857 11.9429C5.3768 11.9429 9.00115 8.0432 9.00115 3.88457V2.94171H7.11543V3.88457C7.11543 7.04251 4.29566 10.0571 0.942857 10.0571H0V11.9429H0.942857Z" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M0.942857 10.0571C5.3768 10.0571 9.00115 13.9568 9.00115 18.1154V19.0583H7.11543V18.1154C7.11543 14.9587 4.29566 11.9428 0.942857 11.9428H0V10.0571H0.942857Z" />
+                    </g>
+                </svg>
+            </div>
+            <div class="slider-btn banner-slider-next">
+                <svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_1151_27911)">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M22 10.0571H-5.72205e-06V11.9428H22V10.0571Z" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M21.0571 11.9429C16.6232 11.9429 12.9989 8.0432 12.9989 3.88457V2.94171H14.8846V3.88457C14.8846 7.04251 17.7043 10.0571 21.0571 10.0571H22V11.9429H21.0571Z" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M21.0571 10.0571C16.6232 10.0571 12.9989 13.9568 12.9989 18.1154V19.0583H14.8846V18.1154C14.8846 14.9587 17.7043 11.9428 21.0571 11.9428H22V10.0571H21.0571Z" />
+                    </g>
+                </svg>
+            </div>
+        </div>
+        <?php endif; ?>
+    </div>
+    <?php endif; ?>
     <?php
 
     }

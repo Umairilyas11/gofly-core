@@ -81,6 +81,18 @@ class Gofly_Tour_Pricing_Bar_Widget extends Widget_Base
         );
 
         $this->add_control(
+    'gofly_tour_pbar_nights_label',
+    [
+        'label'       => esc_html__('Nights Label', 'gofly-core'),
+        'type'        => \Elementor\Controls_Manager::TEXT,
+        'default'     => esc_html__('', 'gofly-core'),
+        'placeholder' => esc_html__('e.g. nights', 'gofly-core'),
+        'description' => esc_html__('Shown after the nights count. Leave blank to hide.', 'gofly-core'),
+        'label_block' => true,
+    ]
+);
+
+        $this->add_control(
             'gofly_tour_pbar_was_label',
             [
                 'label'   => esc_html__('Was Label', 'gofly-core'),
@@ -427,391 +439,441 @@ class Gofly_Tour_Pricing_Bar_Widget extends Widget_Base
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '.eg-tour-sticky-bar-<?php echo $this->get_id(); ?>' => 'background-color: {{VALUE}} !important;',
-                ],
-            ]
-        );
+],
+]
+);
 
-        $this->add_control(
-            'gofly_tour_pbar_sticky_shadow',
-            [
-                'label'     => esc_html__('Show Shadow', 'gofly-core'),
-                'type'      => Controls_Manager::SWITCHER,
-                'default'   => 'yes',
-                'selectors' => [
-                    '.eg-tour-sticky-bar-<?php echo $this->get_id(); ?>' => 'box-shadow: 0 4px 20px rgba(0,0,0,0.12);',
-                ],
-            ]
-        );
+$this->add_control(
+'gofly_tour_pbar_sticky_shadow',
+[
+'label' => esc_html__('Show Shadow', 'gofly-core'),
+'type' => Controls_Manager::SWITCHER,
+'default' => 'yes',
+'selectors' => [
+'.eg-tour-sticky-bar-<?php echo $this->get_id(); ?>' => 'box-shadow: 0 4px 20px rgba(0,0,0,0.12);',
+],
+]
+);
 
-        $this->end_controls_section();
-    }
+$this->end_controls_section();
+}
 
-    protected function render()
-    {
-        $settings   = $this->get_settings_for_display();
-        $id         = get_the_ID();
-        $widget_id  = $this->get_id();
+protected function render()
+{
+$settings = $this->get_settings_for_display();
+$id = get_the_ID();
+$widget_id = $this->get_id();
 
-        // Pricing data
-        $meta          = get_post_meta($id, 'EGNS_TOUR_META_ID', true);
-        $tour_packages = $meta['tour_pricing_package'] ?? [];
-        $has_sale      = Egns_Helper::has_sale_price($id);
+// Pricing data
+$meta = get_post_meta($id, 'EGNS_TOUR_META_ID', true);
+$tour_packages = $meta['tour_pricing_package'] ?? [];
+$has_sale = Egns_Helper::has_sale_price($id);
 
-       // Calculate min sale price and min regular price for display
-$min_sale    = null;
+// Calculate min sale price and min regular price for display
+$min_sale = null;
 $min_regular = null;
 
 // Deal Price Override — check meta fields first
-$deal_price      = !empty($meta['tour_deal_price']) ? floatval($meta['tour_deal_price']) : null;
+$deal_price = !empty($meta['tour_deal_price']) ? floatval($meta['tour_deal_price']) : null;
 $deal_sale_price = !empty($meta['tour_deal_sale_price']) ? floatval($meta['tour_deal_sale_price']) : null;
 
 if ($deal_price !== null) {
-    $min_regular = $deal_price;
-    $min_sale    = ($deal_sale_price !== null && $deal_sale_price < $deal_price) ? $deal_sale_price : null;
-} elseif (is_array($tour_packages)) {
-    foreach ($tour_packages as $package) {
-        $reg_prices  = $package['trip_price_table']['regular_price'] ?? [];
-        $sale_prices = $package['trip_price_table']['sale_price'] ?? [];
+$min_regular = $deal_price;
+$min_sale = ($deal_sale_price !== null && $deal_sale_price < $deal_price) ? $deal_sale_price : null; } elseif
+    (is_array($tour_packages)) { foreach ($tour_packages as $package) {
+    $reg_prices=$package['trip_price_table']['regular_price'] ?? [];
+    $sale_prices=$package['trip_price_table']['sale_price'] ?? []; foreach ($reg_prices as $taxonomy=> $reg_values) {
+    if (!is_array($reg_values)) continue;
+    foreach ($reg_values as $index => $reg_price) {
+    $reg = ($reg_price !== '' && $reg_price !== null) ? floatval($reg_price) : 0;
+    $sale = isset($sale_prices[$taxonomy][$index]) && $sale_prices[$taxonomy][$index] !== ''
+    ? floatval($sale_prices[$taxonomy][$index])
+    : null;
 
-        foreach ($reg_prices as $taxonomy => $reg_values) {
-            if (!is_array($reg_values)) continue;
-            foreach ($reg_values as $index => $reg_price) {
-                $reg  = ($reg_price !== '' && $reg_price !== null) ? floatval($reg_price) : 0;
-                $sale = isset($sale_prices[$taxonomy][$index]) && $sale_prices[$taxonomy][$index] !== ''
-                    ? floatval($sale_prices[$taxonomy][$index])
-                    : null;
+    if ($reg > 0) {
+    $min_regular = ($min_regular === null || $reg < $min_regular) ? $reg : $min_regular; } if ($sale !==null && $sale>
+        0) {
+        $min_sale = ($min_sale === null || $sale < $min_sale) ? $sale : $min_sale; } } } } } $current_price=($min_sale
+            !==null && $min_sale < $min_regular) ? $min_sale : $min_regular; $old_price=($min_sale !==null && $min_sale
+            < $min_regular) ? $min_regular : null; $savings=($old_price !==null && $current_price !==null) ? ($old_price
+            - $current_price) : null; $deal_label=esc_html($settings['gofly_tour_pbar_deal_label'] ?? 'Travel Sale' );
+            $from_label=esc_html($settings['gofly_tour_pbar_from_label'] ?? 'From' );
+            $pp_label=$settings['gofly_tour_pbar_per_person_label'] ?? 'per person' ;
+            $was_label=esc_html($settings['gofly_tour_pbar_was_label'] ?? 'Was' );
+            $save_label=esc_html($settings['gofly_tour_pbar_save_label'] ?? 'Save up to' );
+            $quote_label=esc_html($settings['gofly_tour_pbar_quote_btn_label'] ?? 'Easy Quote' );
+            $call_label=esc_html($settings['gofly_tour_pbar_call_btn_label'] ?? 'Call Us' );
+            $phone=esc_attr($settings['gofly_tour_pbar_phone_number'] ?? '' );
+            $offset=intval($settings['gofly_tour_pbar_sticky_offset'] ?? 200);
+            $nights_label=$settings['gofly_tour_pbar_nights_label'] ?? '' ;
+            $tour_nights=Egns_Helper::egns_get_tour_value('tour_duration_night');?>
 
-                if ($reg > 0) {
-                    $min_regular = ($min_regular === null || $reg < $min_regular) ? $reg : $min_regular;
-                }
-                if ($sale !== null && $sale > 0) {
-                    $min_sale = ($min_sale === null || $sale < $min_sale) ? $sale : $min_sale;
-                }
+            <style>
+            .eg-pbar-nights-row {
+                margin-bottom: 8px;
             }
-        }
-    }
-}
 
-$current_price = ($min_sale !== null && $min_sale < $min_regular) ? $min_sale : $min_regular;
-$old_price     = ($min_sale !== null && $min_sale < $min_regular) ? $min_regular : null;
-$savings       = ($old_price !== null && $current_price !== null) ? ($old_price - $current_price) : null;
+            .eg-pbar-nights {
+                font-size: 13px;
+                color: #888;
+                font-weight: 500;
+            }
 
-        $deal_label  = esc_html($settings['gofly_tour_pbar_deal_label'] ?? 'Travel Sale');
-        $from_label  = esc_html($settings['gofly_tour_pbar_from_label'] ?? 'From');
-        $pp_label    = $settings['gofly_tour_pbar_per_person_label'] ?? 'per person';
-        $was_label   = esc_html($settings['gofly_tour_pbar_was_label'] ?? 'Was');
-        $save_label  = esc_html($settings['gofly_tour_pbar_save_label'] ?? 'Save up to');
-        $quote_label = esc_html($settings['gofly_tour_pbar_quote_btn_label'] ?? 'Easy Quote');
-        $call_label  = esc_html($settings['gofly_tour_pbar_call_btn_label'] ?? 'Call Us');
-        $phone       = esc_attr($settings['gofly_tour_pbar_phone_number'] ?? '');
-        $offset      = intval($settings['gofly_tour_pbar_sticky_offset'] ?? 200);
-?>
-<style>
-.eg-tour-pricing-bar {
-    background: #fff;
-    border: 1px solid #e5e5e5;
-    border-radius: 10px;
-    padding: 22px 24px;
-    font-family: inherit;
-}
-.eg-pbar-deal-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 6px;
-}
-.eg-pbar-deal-label {
-    font-size: 13px;
-    font-weight: 600;
-    color: #555;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-}
-.eg-pbar-per-person {
-    font-size: 13px;
-    color: #888;
-    font-weight: 500;
-    align-self: flex-end;
-    padding-bottom: 3px;
-}
-.eg-pbar-from-row {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 8px;
-}
-.eg-pbar-from-txt {
-    font-size: 14px;
-    color: #444;
-    font-weight: 500;
-}
-.eg-pbar-price-main {
-    font-size: 28px;
-    font-weight: 700;
-    color: #1a1a1a;
-    line-height: 1;
-}
-.eg-pbar-was-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 18px;
-    flex-wrap: wrap;
-}
-.eg-pbar-old-price {
-    font-size: 14px;
-    color: #999;
-    text-decoration: line-through;
-}
-.eg-pbar-save-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    background: #b32a2a;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 4px;
-}
-.eg-pbar-buttons {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-.eg-pbar-quote-btn,
-.eg-pbar-call-btn {
-    flex: 1;
-    min-width: 120px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-    padding: 13px 20px;
-    font-size: 15px;
-    font-weight: 600;
-    border-radius: 8px;
-    border: 2px solid;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background .2s, color .2s, border-color .2s;
-    line-height: 1;
-}
-.eg-pbar-quote-btn {
-    background: #b32a2a;
-    color: #fff;
-    border-color: #b32a2a;
-}
-.eg-pbar-quote-btn:hover {
-    background: #8f2020;
-    border-color: #8f2020;
-    color: #fff;
-}
-.eg-pbar-call-btn {
-    background: #fff;
-    color: #b32a2a;
-    border-color: #b32a2a;
-}
-.eg-pbar-call-btn:hover {
-    background: #b32a2a;
-    color: #fff;
-}
+            .eg-tour-pricing-bar {
+                background: #fff;
+                border: 1px solid #e5e5e5;
+                border-radius: 10px;
+                padding: 22px 24px;
+                font-family: inherit;
+            }
 
-/* Sticky floating bar */
-.eg-sticky-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1320px;
-    padding: 0;
-    margin:auto;
-}
-.eg-tour-sticky-bar {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 9990;
-    background: #fff;
-    padding: 10px 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-    border-bottom: 1px solid #eee;
-}
-.eg-tour-sticky-bar.eg-sticky-visible {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-    height:90px;
-}
-.eg-tour-sticky-info {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-.eg-tour-sticky-title {
-    font-size: 22px;
-    font-weight: 700;
-    color: #1a1a1a;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 400px;
-}
-.eg-tour-sticky-price {
-    font-size: 27px;
-    font-weight: 700;
-    color: #ff5800;
-}
-.eg-tour-sticky-btns {
-    display: flex;
-    gap: 8px;
-    flex-shrink: 0;
-}
-.eg-tour-sticky-btns .eg-pbar-quote-btn,
-.eg-tour-sticky-btns .eg-pbar-call-btn {
-    padding: 15px 20px;
-    font-size: 18px;
-    min-width: unset;
-    flex: unset;
-}
-</style>
+            .eg-pbar-deal-row {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                margin-bottom: 6px;
+            }
 
-<div class="eg-tour-pricing-bar" id="eg-pricing-bar-<?php echo esc_attr($widget_id); ?>">
+            .eg-pbar-deal-label {
+                font-size: 13px;
+                font-weight: 600;
+                color: #555;
+                text-transform: uppercase;
+                letter-spacing: .5px;
+            }
 
-    <!-- Deal label row -->
-    <?php if (!empty($deal_label)): ?>
-    <div class="eg-pbar-deal-row">
-        <span class="eg-pbar-deal-label"><?php echo $deal_label; ?></span>
-        <?php if ($has_sale): ?>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="7" cy="7" r="6.5" stroke="#b32a2a"/>
-                <path d="M7 4v3.5l2 2" stroke="#b32a2a" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-        <?php endif; ?>
-    </div>
-    <?php endif; ?>
+            .eg-pbar-per-person {
+                font-size: 13px;
+                color: #888;
+                font-weight: 500;
+                align-self: flex-end;
+                padding-bottom: 3px;
+            }
 
-    <!-- Main price row -->
-    <div class="eg-pbar-from-row">
-        <span class="eg-pbar-from-txt"><?php echo $from_label; ?></span>
-        <?php if ($current_price !== null): ?>
-            <span class="eg-pbar-price-main"><?php echo Egns_Helper::gofly_format_price($current_price); ?></span>
-            <?php if (!empty($pp_label)): ?><span class="eg-pbar-per-person"><?php echo esc_html($pp_label); ?></span><?php endif; ?>
-        <?php else: ?>
-            <span class="eg-pbar-price-main"><?php echo esc_html__('Contact Us', 'gofly-core'); ?></span>
-        <?php endif; ?>
-    </div>
+            .eg-pbar-from-row {
+                display: flex;
+                align-items: baseline;
+                gap: 8px;
+                flex-wrap: wrap;
+                margin-bottom: 8px;
+            }
 
-    <!-- Was / Save row -->
-    <?php if ($old_price !== null && $savings !== null): ?>
-    <div class="eg-pbar-was-row">
-        <span class="eg-pbar-old-price"><?php echo $was_label; ?> <?php echo Egns_Helper::gofly_format_price($old_price); ?></span>
-        <span class="eg-pbar-save-badge">
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 5h8M5 1v8" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-            <?php echo $save_label . ' ' . Egns_Helper::gofly_format_price($savings); ?>
-        </span>
-    </div>
-    <?php endif; ?>
+            .eg-pbar-from-txt {
+                font-size: 14px;
+                color: #444;
+                font-weight: 500;
+            }
 
-    <!-- Buttons -->
-    <div class="eg-pbar-buttons">
-        <!-- Quote button → opens the same enquiry modal as EG Tour Check Availability -->
-        <button class="eg-pbar-quote-btn"
-            data-bs-toggle="modal"
-            data-bs-target="#enquiry<?php echo esc_attr($id); ?>">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <?php echo $quote_label; ?>
-        </button>
+            .eg-pbar-price-main {
+                font-size: 28px;
+                font-weight: 700;
+                color: #1a1a1a;
+                line-height: 1;
+            }
 
-        <!-- Call button -->
-        <?php if (!empty($phone)): ?>
-        <a href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', $phone)); ?>" class="eg-pbar-call-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.84a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <?php echo $call_label; ?>
-        </a>
-        <?php endif; ?>
-    </div>
-</div>
+            .eg-pbar-was-row {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 18px;
+                flex-wrap: wrap;
+            }
 
-<!-- Sticky bar that appears at top when scrolling -->
-<div class="eg-tour-sticky-bar eg-tour-sticky-bar-<?php echo esc_attr($widget_id); ?>" id="eg-sticky-bar-<?php echo esc_attr($widget_id); ?>">
-    <div class="eg-sticky-inner">
-        <div class="eg-tour-sticky-info">
-            <span class="eg-tour-sticky-title"><?php the_title(); ?></span>
-            <?php if ($current_price !== null): ?>
-                <span class="eg-tour-sticky-price"><?php echo Egns_Helper::gofly_format_price($current_price); ?></span>
-            <?php endif; ?>
-        </div>
-        <div class="eg-tour-sticky-btns">
-            <button class="eg-pbar-quote-btn"
-                data-bs-toggle="modal"
-                data-bs-target="#enquiry<?php echo esc_attr($id); ?>">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <?php echo $quote_label; ?>
-        </button>
-        <?php if (!empty($phone)): ?>
-        <a href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', $phone)); ?>" class="eg-pbar-call-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.84a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <?php echo $call_label; ?>
-        </a>
-        <?php endif; ?>
-    </div>
-        </div>
-</div>
+            .eg-pbar-old-price {
+                font-size: 14px;
+                color: #999;
+                text-decoration: line-through;
+            }
 
-<script>
-(function () {
-    var stickyBar = document.getElementById('eg-sticky-bar-<?php echo esc_js($widget_id); ?>');
-    var offset    = <?php echo intval($offset); ?>;
-    if (!stickyBar) return;
+            .eg-pbar-save-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 4px;
+                background: #b32a2a;
+                color: #fff;
+                font-size: 12px;
+                font-weight: 600;
+                padding: 4px 10px;
+                border-radius: 4px;
+            }
 
-    function onScroll() {
-        if (window.scrollY > offset) {
-            stickyBar.classList.add('eg-sticky-visible');
-        } else {
-            stickyBar.classList.remove('eg-sticky-visible');
-        }
-    }
+            .eg-pbar-buttons {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // run on load in case page is already scrolled
-})();
-</script>
+            .eg-pbar-quote-btn,
+            .eg-pbar-call-btn {
+                flex: 1;
+                min-width: 120px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 7px;
+                padding: 13px 20px;
+                font-size: 15px;
+                font-weight: 600;
+                border-radius: 8px;
+                border: 2px solid;
+                cursor: pointer;
+                text-decoration: none;
+                transition: background .2s, color .2s, border-color .2s;
+                line-height: 1;
+            }
 
-<!-- Enquiry Modal -->
-<div class="modal enquiry-modal fade" id="enquiry<?php echo esc_attr($id); ?>" tabindex="-1" aria-labelledby="enquiryModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close">
-                <svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2.00247 0.500545C1.79016 0.505525 1.58918 0.582706 1.4362 0.735547L0.694403 1.479C0.345704 1.82743 0.389689 2.43243 0.79164 2.83493L3.00694 5.05341L0.79164 7.27092C0.389689 7.67328 0.345566 8.27842 0.694403 8.62753L1.4362 9.37044C1.7849 9.71872 2.38879 9.67543 2.7913 9.27293L5.00659 7.05473L7.22189 9.27293C7.62467 9.67543 8.22898 9.71872 8.57699 9.37044L9.31989 8.62753C9.6679 8.27856 9.62461 7.67342 9.22182 7.27092L7.00653 5.05341L9.22182 2.83493C9.62461 2.43243 9.6679 1.82743 9.31989 1.479L8.57699 0.735547C8.22898 0.386433 7.62467 0.430557 7.22189 0.833614L5.00659 3.05126L2.7913 0.833753C2.56515 0.606635 2.27482 0.493906 2.00247 0.500545Z" />
-                </svg>
-            </button>
-            <div class="modal-body">
-                <h4 class="modal-title" id="enquiryModalLabel"><?php echo Egns_Helper::egns_get_theme_option('tour_inquiry_form_title') ?></h4>
-                <?php echo do_shortcode(Egns_Helper::egns_get_theme_option('tour_inquiry_form_shortcode')) ?>
+            .eg-pbar-quote-btn {
+                background: #b32a2a;
+                color: #fff;
+                border-color: #b32a2a;
+            }
+
+            .eg-pbar-quote-btn:hover {
+                background: #8f2020;
+                border-color: #8f2020;
+                color: #fff;
+            }
+
+            .eg-pbar-call-btn {
+                background: #fff;
+                color: #b32a2a;
+                border-color: #b32a2a;
+            }
+
+            .eg-pbar-call-btn:hover {
+                background: #b32a2a;
+                color: #fff;
+            }
+
+            /* Sticky floating bar */
+            .eg-sticky-inner {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                max-width: 1320px;
+                padding: 0;
+                margin: auto;
+            }
+
+            .eg-tour-sticky-bar {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 9990;
+                background: #fff;
+                padding: 10px 20px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+                border-bottom: 1px solid #eee;
+            }
+
+            .eg-tour-sticky-bar.eg-sticky-visible {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 16px;
+                flex-wrap: wrap;
+                height: 90px;
+            }
+
+            .eg-tour-sticky-info {
+                display: flex;
+                align-items: baseline;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+
+            .eg-tour-sticky-title {
+                font-size: 22px;
+                font-weight: 700;
+                color: #1a1a1a;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 400px;
+            }
+
+            .eg-tour-sticky-price {
+                font-size: 27px;
+                font-weight: 700;
+                color: #ff5800;
+            }
+
+            .eg-tour-sticky-btns {
+                display: flex;
+                gap: 8px;
+                flex-shrink: 0;
+            }
+
+            .eg-tour-sticky-btns .eg-pbar-quote-btn,
+            .eg-tour-sticky-btns .eg-pbar-call-btn {
+                padding: 15px 20px;
+                font-size: 18px;
+                min-width: unset;
+                flex: unset;
+            }
+            </style>
+
+            <div class="eg-tour-pricing-bar" id="eg-pricing-bar-<?php echo esc_attr($widget_id); ?>">
+
+                <!-- Deal label row -->
+                <?php if (!empty($deal_label)): ?>
+                <div class="eg-pbar-deal-row">
+                    <span class="eg-pbar-deal-label"><?php echo $deal_label; ?></span>
+                    <?php if ($has_sale): ?>
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="7" cy="7" r="6.5" stroke="#b32a2a" />
+                        <path d="M7 4v3.5l2 2" stroke="#b32a2a" stroke-width="1.5" stroke-linecap="round" />
+                    </svg>
+                    <?php endif; ?>
+                </div>
+                <?php endif; ?>
+
+                <!-- Main price row -->
+                <div class="eg-pbar-from-row">
+                    <span class="eg-pbar-from-txt"><?php echo $from_label; ?></span>
+                    <?php if ($current_price !== null): ?>
+                    <span
+                        class="eg-pbar-price-main"><?php echo Egns_Helper::gofly_format_price($current_price); ?></span>
+                    <?php if (!empty($pp_label)): ?><span
+                        class="eg-pbar-per-person"><?php echo esc_html($pp_label); ?></span><?php endif; ?>
+                    <?php else: ?>
+                    <span class="eg-pbar-price-main"><?php echo esc_html__('Contact Us', 'gofly-core'); ?></span>
+                    <?php endif; ?>
+                </div>
+                <?php if (!empty($tour_nights)): ?>
+                <div class="eg-pbar-nights-row">
+                    <span class="eg-pbar-nights">
+                        <?php echo esc_html($tour_nights) . ' ' . esc_html($nights_label); ?>
+                    </span>
+                </div>
+                <?php endif; ?>
+
+                <!-- Was / Save row -->
+                <?php if ($old_price !== null && $savings !== null): ?>
+                <div class="eg-pbar-was-row">
+                    <span class="eg-pbar-old-price"><?php echo $was_label; ?>
+                        <?php echo Egns_Helper::gofly_format_price($old_price); ?></span>
+                    <span class="eg-pbar-save-badge">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 5h8M5 1v8" stroke="#fff" stroke-width="1.5" stroke-linecap="round" />
+                        </svg>
+                        <?php echo $save_label . ' ' . Egns_Helper::gofly_format_price($savings); ?>
+                    </span>
+                </div>
+                <?php endif; ?>
+
+                <!-- Buttons -->
+                <div class="eg-pbar-buttons">
+                    <!-- Quote button → opens the same enquiry modal as EG Tour Check Availability -->
+                    <button class="eg-pbar-quote-btn" data-bs-toggle="modal"
+                        data-bs-target="#enquiry<?php echo esc_attr($id); ?>">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                                stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <?php echo $quote_label; ?>
+                    </button>
+
+                    <!-- Call button -->
+                    <?php if (!empty($phone)): ?>
+                    <a href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', $phone)); ?>" class="eg-pbar-call-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.84a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"
+                                stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <?php echo $call_label; ?>
+                    </a>
+                    <?php endif; ?>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
 
-<?php
+            <!-- Sticky bar that appears at top when scrolling -->
+            <div class="eg-tour-sticky-bar eg-tour-sticky-bar-<?php echo esc_attr($widget_id); ?>"
+                id="eg-sticky-bar-<?php echo esc_attr($widget_id); ?>">
+                <div class="eg-sticky-inner">
+                    <div class="eg-tour-sticky-info">
+                        <span class="eg-tour-sticky-title"><?php the_title(); ?></span>
+                        <?php if ($current_price !== null): ?>
+                        <span
+                            class="eg-tour-sticky-price"><?php echo Egns_Helper::gofly_format_price($current_price); ?></span>
+                        <?php endif; ?>
+                    </div>
+                    <div class="eg-tour-sticky-btns">
+                        <button class="eg-pbar-quote-btn" data-bs-toggle="modal"
+                            data-bs-target="#enquiry<?php echo esc_attr($id); ?>">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <?php echo $quote_label; ?>
+                        </button>
+                        <?php if (!empty($phone)): ?>
+                        <a href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', $phone)); ?>"
+                            class="eg-pbar-call-btn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.84a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <?php echo $call_label; ?>
+                        </a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+            (function() {
+                var stickyBar = document.getElementById('eg-sticky-bar-<?php echo esc_js($widget_id); ?>');
+                var offset = <?php echo intval($offset); ?>;
+                if (!stickyBar) return;
+
+                function onScroll() {
+                    if (window.scrollY > offset) {
+                        stickyBar.classList.add('eg-sticky-visible');
+                    } else {
+                        stickyBar.classList.remove('eg-sticky-visible');
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll, {
+                    passive: true
+                });
+                onScroll(); // run on load in case page is already scrolled
+            })();
+            </script>
+
+            <!-- Enquiry Modal -->
+            <div class="modal enquiry-modal fade" id="enquiry<?php echo esc_attr($id); ?>" tabindex="-1"
+                aria-labelledby="enquiryModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close">
+                            <svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M2.00247 0.500545C1.79016 0.505525 1.58918 0.582706 1.4362 0.735547L0.694403 1.479C0.345704 1.82743 0.389689 2.43243 0.79164 2.83493L3.00694 5.05341L0.79164 7.27092C0.389689 7.67328 0.345566 8.27842 0.694403 8.62753L1.4362 9.37044C1.7849 9.71872 2.38879 9.67543 2.7913 9.27293L5.00659 7.05473L7.22189 9.27293C7.62467 9.67543 8.22898 9.71872 8.57699 9.37044L9.31989 8.62753C9.6679 8.27856 9.62461 7.67342 9.22182 7.27092L7.00653 5.05341L9.22182 2.83493C9.62461 2.43243 9.6679 1.82743 9.31989 1.479L8.57699 0.735547C8.22898 0.386433 7.62467 0.430557 7.22189 0.833614L5.00659 3.05126L2.7913 0.833753C2.56515 0.606635 2.27482 0.493906 2.00247 0.500545Z" />
+                            </svg>
+                        </button>
+                        <div class="modal-body">
+                            <h4 class="modal-title" id="enquiryModalLabel">
+                                <?php echo Egns_Helper::egns_get_theme_option('tour_inquiry_form_title') ?></h4>
+                            <?php echo do_shortcode(Egns_Helper::egns_get_theme_option('tour_inquiry_form_shortcode')) ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <?php
     }
 }
 

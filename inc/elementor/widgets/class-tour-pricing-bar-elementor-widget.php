@@ -509,6 +509,12 @@ $min_sale = ($deal_sale_price !== null && $deal_sale_price < $deal_price) ? $dea
             $tour_nights=Egns_Helper::egns_get_tour_value('tour_duration_night');?>
 
             <style>
+            .eg-tour-sticky-price-nights {
+                display: flex;
+                gap: 10px;
+                align-items: baseline;
+            }
+
             .eg-pbar-nights-row {
                 margin-bottom: 8px;
             }
@@ -714,6 +720,13 @@ $min_sale = ($deal_sale_price !== null && $deal_sale_price < $deal_price) ? $dea
                 min-width: unset;
                 flex: unset;
             }
+
+            @media (max-width: 425px) {
+                .eg-tour-sticky-price-nights {
+                    flex-direction: column;
+                    gap: 0;
+                }
+            }
             </style>
 
             <div class="eg-tour-pricing-bar" id="eg-pricing-bar-<?php echo esc_attr($widget_id); ?>">
@@ -800,9 +813,15 @@ $min_sale = ($deal_sale_price !== null && $deal_sale_price < $deal_price) ? $dea
                     <div class="eg-tour-sticky-info">
                         <span class="eg-tour-sticky-title"><?php the_title(); ?></span>
                         <?php if ($current_price !== null): ?>
-                        <span
-                            class="eg-tour-sticky-price"><?php echo Egns_Helper::gofly_format_price($current_price); ?></span>
-                        <?php endif; ?>
+                        <div class="eg-tour-sticky-price-nights">
+                            <span
+                                class="eg-tour-sticky-price"><?php echo Egns_Helper::gofly_format_price($current_price); ?>/PP</span>
+                            <?php endif; ?>
+                            <?php if (!empty($tour_nights)): ?>
+                            <span
+                                class="eg-pbar-nights"><?php echo esc_html($tour_nights) . ' ' . esc_html($nights_label); ?></span>
+                            <?php endif; ?>
+                        </div>
                     </div>
                     <div class="eg-tour-sticky-btns">
                         <button class="eg-pbar-quote-btn" data-bs-toggle="modal"

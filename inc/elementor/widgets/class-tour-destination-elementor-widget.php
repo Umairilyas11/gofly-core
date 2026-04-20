@@ -120,118 +120,148 @@ class Gofly_Tour_Destination_Widget extends Widget_Base
         $show_title = $settings['gofly_tdest_show_title'] === 'yes';
         $title      = $settings['gofly_tdest_title'] ?? '';
 ?>
-        <div class="gofly-tour-destinations">
-            <?php if ($show_title && !empty($title)) : ?>
-                <h3 class="gofly-tdest-section-title"><?php echo esc_html($title); ?></h3>
-            <?php endif; ?>
+<div class="gofly-tour-destinations">
+    <?php if ($show_title && !empty($title)) : ?>
+    <h3 class="gofly-tdest-section-title"><?php echo esc_html($title); ?></h3>
+    <?php endif; ?>
 
-            <?php if ($is_carousel) : ?>
-            <div class="swiper <?php echo esc_attr($uid); ?>">
-                <div class="swiper-wrapper">
-                    <?php foreach ($posts as $post) :
+    <?php if ($is_carousel) : ?>
+    <div class="swiper <?php echo esc_attr($uid); ?>">
+        <div class="swiper-wrapper">
+            <?php foreach ($posts as $post) :
                         $thumb = get_the_post_thumbnail_url($post->ID, 'large');
                     ?>
-                        <div class="swiper-slide">
-                            <a href="<?php echo get_permalink($post->ID); ?>" class="gofly-tdest-card" <?php if ($thumb) echo 'style="background-image:url(' . esc_url($thumb) . ');"'; ?>>
-                                <span class="gofly-tdest-label"><?php echo esc_html(get_the_title($post->ID)); ?></span>
-                            </a>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-                <div class="swiper-button-next <?php echo esc_attr($uid); ?>-next"></div>
-                <div class="swiper-button-prev <?php echo esc_attr($uid); ?>-prev"></div>
+            <div class="swiper-slide">
+                <a href="<?php echo get_permalink($post->ID); ?>" class="gofly-tdest-card"
+                    <?php if ($thumb) echo 'style="background-image:url(' . esc_url($thumb) . ');"'; ?>>
+                    <span class="gofly-tdest-label"><?php echo esc_html(get_the_title($post->ID)); ?></span>
+                </a>
             </div>
+            <?php endforeach; ?>
+        </div>
+        <div class="swiper-button-next <?php echo esc_attr($uid); ?>-next"></div>
+        <div class="swiper-button-prev <?php echo esc_attr($uid); ?>-prev"></div>
+    </div>
 
-            <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                new Swiper('.<?php echo esc_js($uid); ?>', {
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        new Swiper('.<?php echo esc_js($uid); ?>', {
+            slidesPerView: 2,
+            spaceBetween: 20,
+            navigation: {
+                nextEl: '.<?php echo esc_js($uid); ?>-next',
+                prevEl: '.<?php echo esc_js($uid); ?>-prev',
+            },
+            breakpoints: {
+                768: {
                     slidesPerView: 2,
-                    spaceBetween: 20,
-                    navigation: {
-                        nextEl: '.<?php echo esc_js($uid); ?>-next',
-                        prevEl: '.<?php echo esc_js($uid); ?>-prev',
-                    },
-                    breakpoints: {
-                        768:  { slidesPerView: 2, spaceBetween: 20 },
-                        1024: { slidesPerView: 3, spaceBetween: 20 },
-                    },
-                });
-            });
-            </script>
+                    spaceBetween: 20
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 20
+                },
+            },
+        });
+    });
+    </script>
 
-            <?php else : ?>
-            <div class="gofly-tdest-grid gofly-tdest-count-<?php echo $count; ?>">
-                <?php foreach ($posts as $post) :
+    <?php else : ?>
+    <div class="gofly-tdest-grid gofly-tdest-count-<?php echo $count; ?>">
+        <?php foreach ($posts as $post) :
                     $thumb = get_the_post_thumbnail_url($post->ID, 'large');
                 ?>
-                    <a href="<?php echo get_permalink($post->ID); ?>" class="gofly-tdest-card" <?php if ($thumb) echo 'style="background-image:url(' . esc_url($thumb) . ');"'; ?>>
-                        <span class="gofly-tdest-label"><?php echo esc_html(get_the_title($post->ID)); ?></span>
-                    </a>
-                <?php endforeach; ?>
-            </div>
-            <?php endif; ?>
-        </div>
+        <a href="<?php echo get_permalink($post->ID); ?>" class="gofly-tdest-card"
+            <?php if ($thumb) echo 'style="background-image:url(' . esc_url($thumb) . ');"'; ?>>
+            <span class="gofly-tdest-label"><?php echo esc_html(get_the_title($post->ID)); ?></span>
+        </a>
+        <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
+</div>
 
-        <style>
-            .gofly-tour-destinations { width: 100%; }
-            .gofly-tdest-section-title { margin-bottom: 20px; }
+<style>
+.gofly-tour-destinations {
+    width: 100%;
+}
 
-            .gofly-tdest-card {
-                display: block;
-                position: relative;
-                height: 300px;
-                border-radius: 16px;
-                overflow: hidden;
-                background-size: cover;
-                background-position: center;
-                background-color: #ddd;
-                text-decoration: none;
-            }
-            .gofly-tdest-label {
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                padding: 30px 18px 16px;
-                color: #fff;
-                font-weight: 600;
-                font-size: 15px;
-                background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%);
-                text-align: center;
-            }
+.gofly-tdest-section-title {
+    margin-bottom: 20px;
+}
 
-            /* Grid layout for ≤3 items */
-            .gofly-tdest-grid {
-                display: grid;
-                gap: 20px;
-            }
-            .gofly-tdest-count-1 { grid-template-columns: 1fr; }
-            .gofly-tdest-count-2 { grid-template-columns: 1fr 1fr; }
-            .gofly-tdest-count-3 { grid-template-columns: 1fr 1fr; }
-            .gofly-tdest-count-3 .gofly-tdest-card:first-child {
-                grid-row: span 1;
-            }
+.gofly-tdest-card {
+    display: block;
+    position: relative;
+    height: 300px;
+    border-radius: 16px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-color: #ddd;
+    text-decoration: none;
+}
 
-            /* Swiper nav buttons */
-            .gofly-tour-destinations .swiper-button-next,
-            .gofly-tour-destinations .swiper-button-prev {
-                width: 40px;
-                height: 40px;
-                background: #ff5800;
-                border-radius: 50%;
-                color: #fff;
-            }
-            .gofly-tour-destinations .swiper-button-next::after,
-            .gofly-tour-destinations .swiper-button-prev::after {
-                font-size: 14px;
-                font-weight: 700;
-            }
+.gofly-tdest-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30px 18px 16px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, transparent 100%);
+    text-align: center;
+}
 
-            @media (max-width: 600px) {
-                .gofly-tdest-count-2,
-                .gofly-tdest-count-3 { grid-template-columns: 1fr; }
-            }
-        </style>
+/* Grid layout for ≤3 items */
+.gofly-tdest-grid {
+    display: grid;
+    gap: 20px;
+}
+
+.gofly-tdest-count-1 {
+    grid-template-columns: 1fr;
+}
+
+.gofly-tdest-count-2 {
+    grid-template-columns: 1fr 1fr;
+}
+
+.gofly-tdest-count-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* Swiper nav buttons */
+.gofly-tour-destinations .swiper-button-next,
+.gofly-tour-destinations .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+    background: #ff5800;
+    border-radius: 50%;
+    color: #fff;
+}
+
+.gofly-tour-destinations .swiper-button-next::after,
+.gofly-tour-destinations .swiper-button-prev::after {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+@media (max-width: 600px) {
+
+    .gofly-tdest-count-2,
+    .gofly-tdest-count-3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+    .gofly-tdest-count-3 {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+</style>
 <?php
     }
 }

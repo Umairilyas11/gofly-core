@@ -138,61 +138,253 @@ class Gofly_Tour_Gallery_Widget extends Widget_Base
 
         $total = count($images);
         $wid   = 'eg-tg-' . $this->get_id();
+        $sel   = '#' . esc_attr($wid);
         ?>
 <style>
-#<?php echo esc_attr($wid); ?> .eg-tg-main-wrap{position:relative;overflow:hidden;height:<?php echo $main_h; ?>px;border-radius:12px;background:#111;user-select:none}
-#<?php echo esc_attr($wid); ?> .eg-tg-slide{position:absolute;inset:0;opacity:0;transition:opacity .6s ease;pointer-events:none}
-#<?php echo esc_attr($wid); ?> .eg-tg-slide.active{opacity:1;pointer-events:auto}
-#<?php echo esc_attr($wid); ?> .eg-tg-slide img{width:100%;height:<?php echo $main_h; ?>px;object-fit:cover;display:block;border-radius:12px}
-#<?php echo esc_attr($wid); ?> .eg-tg-nav-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:10;border:none;cursor:pointer;width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.48);display:flex;align-items:center;justify-content:center;transition:background .2s}
-#<?php echo esc_attr($wid); ?> .eg-tg-nav-btn:hover{background:rgba(0,0,0,.72)}
-#<?php echo esc_attr($wid); ?> .eg-tg-prev{left:14px}
-#<?php echo esc_attr($wid); ?> .eg-tg-next{right:14px}
-#<?php echo esc_attr($wid); ?> .eg-tg-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;z-index:10}
-#<?php echo esc_attr($wid); ?> .eg-tg-dot{width:8px;height:8px;border-radius:20px;background:rgba(255,255,255,.5);cursor:pointer;transition:all .35s ease;border:none;padding:0}
-#<?php echo esc_attr($wid); ?> .eg-tg-dot.active{width:22px;background:#fff}
-#<?php echo esc_attr($wid); ?> .eg-tg-view-all{position:absolute;bottom:14px;right:16px;display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#fff;text-decoration:none;background:rgba(0,0,0,.52);border-radius:30px;padding:6px 14px;backdrop-filter:blur(4px);z-index:10;transition:background .2s}
-#<?php echo esc_attr($wid); ?> .eg-tg-view-all:hover{background:rgba(0,0,0,.75);color:#fff}
-.eg-tg-lb{display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.92);align-items:center;justify-content:center;flex-direction:column}
-.eg-tg-lb.open{display:flex}
-.eg-tg-lb-close{position:absolute;top:18px;right:22px;background:rgba(255,255,255,.12);border:none;color:#fff;font-size:22px;cursor:pointer;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-.eg-tg-lb-inner{position:relative;width:90vw;max-width:960px;max-height:80vh;display:flex;align-items:center;justify-content:center}
-.eg-tg-lb-img{max-width:100%;max-height:78vh;border-radius:8px;object-fit:contain;display:block}
-.eg-tg-lb-prev,.eg-tg-lb-next{position:absolute;background:rgba(255,255,255,.15);border:none;border-radius:50%;width:42px;height:42px;cursor:pointer;color:#fff;font-size:20px;display:flex;align-items:center;justify-content:center}
-.eg-tg-lb-prev{left:-54px}.eg-tg-lb-next{right:-54px}
-.eg-tg-lb-counter{color:#bbb;margin-top:14px;font-size:13px;letter-spacing:.5px}
+<?php echo $sel; ?> .eg-tg-main-wrap {
+    position: relative;
+    overflow: hidden;
+    height: <?php echo $main_h; ?>px;
+    border-radius: 12px;
+    background: #111;
+    user-select: none
+}
+
+<?php echo $sel; ?> .eg-tg-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity .6s ease;
+    pointer-events: none
+}
+
+<?php echo $sel; ?> .eg-tg-slide.active {
+    opacity: 1;
+    pointer-events: auto
+}
+
+<?php echo $sel; ?> .eg-tg-slide img {
+    width: 100%;
+    height: <?php echo $main_h; ?>px;
+    object-fit: cover;
+    display: block;
+    border-radius: 12px
+}
+
+<?php echo $sel; ?> .eg-tg-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, .48);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .2s
+}
+
+<?php echo $sel; ?> .eg-tg-nav-btn:hover {
+    background: rgba(0, 0, 0, .72)
+}
+
+<?php echo $sel; ?> .eg-tg-prev {
+    left: 14px
+}
+
+<?php echo $sel; ?> .eg-tg-next {
+    right: 14px
+}
+
+<?php echo $sel; ?> .eg-tg-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap
+}
+
+<?php echo $sel; ?> .eg-tg-dot {
+    width: 80px;
+    height: 60px;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    padding: 0;
+    opacity: .65;
+    transition: all .3s ease;
+    flex-shrink: 0
+}
+
+<?php echo $sel; ?> .eg-tg-dot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none
+}
+
+<?php echo $sel; ?> .eg-tg-dot.active {
+    border-color: #000;
+    opacity: 1
+}
+
+<?php echo $sel; ?> .eg-tg-view-all {
+    position: absolute;
+    bottom: 14px;
+    right: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    background: rgba(0, 0, 0, .52);
+    border-radius: 30px;
+    padding: 6px 14px;
+    backdrop-filter: blur(4px);
+    z-index: 10;
+    transition: background .2s
+}
+
+<?php echo $sel; ?> .eg-tg-view-all:hover {
+    background: rgba(0, 0, 0, .75);
+    color: #fff
+}
+
+.eg-tg-lb {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(0, 0, 0, .92);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column
+}
+
+.eg-tg-lb.open {
+    display: flex
+}
+
+.eg-tg-lb-close {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    background: rgba(255, 255, 255, .12);
+    border: none;
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.eg-tg-lb-inner {
+    position: relative;
+    width: 90vw;
+    max-width: 960px;
+    max-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.eg-tg-lb-img {
+    max-width: 100%;
+    max-height: 78vh;
+    border-radius: 8px;
+    object-fit: contain;
+    display: block
+}
+
+.eg-tg-lb-prev,
+.eg-tg-lb-next {
+    position: absolute;
+    background: rgba(255, 255, 255, .15);
+    border: none;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.eg-tg-lb-prev {
+    left: -54px
+}
+
+.eg-tg-lb-next {
+    right: -54px
+}
+
+.eg-tg-lb-counter {
+    color: #bbb;
+    margin-top: 14px;
+    font-size: 13px;
+    letter-spacing: .5px
+}
 </style>
 
 <div id="<?php echo esc_attr($wid); ?>">
     <div class="eg-tg-main-wrap">
         <?php foreach ($images as $i => $img): ?>
-            <div class="eg-tg-slide<?php echo $i === 0 ? ' active' : ''; ?>" data-index="<?php echo $i; ?>">
-                <img src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt']); ?>">
-            </div>
+        <div class="eg-tg-slide<?php echo $i === 0 ? ' active' : ''; ?>" data-index="<?php echo $i; ?>">
+            <img src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt']); ?>">
+        </div>
         <?php endforeach; ?>
 
         <?php if ($total > 1): ?>
         <button class="eg-tg-nav-btn eg-tg-prev" aria-label="<?php esc_attr_e('Previous', 'gofly-core'); ?>">
-            <svg width="10" height="16" viewBox="0 0 10 16" fill="none"><path d="M8.5 1L1.5 8L8.5 15" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="10" height="16" viewBox="0 0 10 16" fill="none">
+                <path d="M8.5 1L1.5 8L8.5 15" stroke="white" stroke-width="2.2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
         </button>
         <button class="eg-tg-nav-btn eg-tg-next" aria-label="<?php esc_attr_e('Next', 'gofly-core'); ?>">
-            <svg width="10" height="16" viewBox="0 0 10 16" fill="none"><path d="M1.5 1L8.5 8L1.5 15" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="10" height="16" viewBox="0 0 10 16" fill="none">
+                <path d="M1.5 1L8.5 8L1.5 15" stroke="white" stroke-width="2.2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
         </button>
-        <div class="eg-tg-dots">
-            <?php for ($i = 0; $i < $total; $i++): ?>
-                <button class="eg-tg-dot<?php echo $i === 0 ? ' active' : ''; ?>" data-index="<?php echo $i; ?>" aria-label="Slide <?php echo $i + 1; ?>"></button>
-            <?php endfor; ?>
-        </div>
+
         <?php endif; ?>
 
         <?php if ($show_all && $total > 1): ?>
         <a href="#" class="eg-tg-view-all eg-tg-lb-open">
             <?php echo esc_html($view_lbl . ' ' . $total); ?>
-            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                <path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="white" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
         </a>
         <?php endif; ?>
     </div>
-
+    <?php if ($total > 1): ?>
+    <div class="eg-tg-dots">
+        <?php foreach ($images as $i => $img): ?>
+        <button class="eg-tg-dot<?php echo $i === 0 ? ' active' : ''; ?>" data-index="<?php echo $i; ?>"
+            aria-label="Slide <?php echo $i + 1; ?>">
+            <img src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt']); ?>">
+        </button>
+        <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
     <?php if ($show_all && $total > 1): ?>
     <div class="eg-tg-lb" id="<?php echo esc_attr($wid); ?>-lb">
         <button class="eg-tg-lb-close">&times;</button>
@@ -207,65 +399,124 @@ class Gofly_Tour_Gallery_Widget extends Widget_Base
 </div>
 
 <script>
-(function(){
-    var wid=<?php echo json_encode($wid); ?>;
-    var wrap=document.getElementById(wid);
-    if(!wrap) return;
-    var slides=wrap.querySelectorAll('.eg-tg-slide');
-    var dots=wrap.querySelectorAll('.eg-tg-dot');
-    var prev=wrap.querySelector('.eg-tg-prev');
-    var next=wrap.querySelector('.eg-tg-next');
-    var cur=0,total=slides.length,timer=null;
-    var autoplay=<?php echo $autoplay ? 'true' : 'false'; ?>;
-    var apSpeed=<?php echo $ap_speed; ?>;
+(function() {
+    var wid = <?php echo json_encode($wid); ?>;
+    var wrap = document.getElementById(wid);
+    if (!wrap) return;
+    var slides = wrap.querySelectorAll('.eg-tg-slide');
+    var dots = wrap.querySelectorAll('.eg-tg-dot');
+    var prev = wrap.querySelector('.eg-tg-prev');
+    var next = wrap.querySelector('.eg-tg-next');
+    var cur = 0,
+        total = slides.length,
+        timer = null;
+    var autoplay = <?php echo $autoplay ? 'true' : 'false'; ?>;
+    var apSpeed = <?php echo $ap_speed; ?>;
 
-    function goTo(idx){
+    function goTo(idx) {
         slides[cur].classList.remove('active');
-        if(dots[cur]) dots[cur].classList.remove('active');
-        cur=(idx+total)%total;
+        if (dots[cur]) dots[cur].classList.remove('active');
+        cur = (idx + total) % total;
         slides[cur].classList.add('active');
-        if(dots[cur]) dots[cur].classList.add('active');
+        if (dots[cur]) dots[cur].classList.add('active');
         syncLb();
     }
-    function syncLb(){
-        var lb=document.getElementById(wid+'-lb');
-        if(!lb) return;
-        var img=lb.querySelector('.eg-tg-lb-img');
-        var cnt=lb.querySelector('.eg-tg-lb-counter');
-        if(img) img.src=slides[cur].querySelector('img').src;
-        if(cnt) cnt.textContent=(cur+1)+' / '+total;
-    }
-    function startAp(){ if(!autoplay||total<=1) return; timer=setInterval(function(){ goTo(cur+1); },apSpeed); }
-    function stopAp(){ if(timer){ clearInterval(timer); timer=null; } }
 
-    if(prev) prev.addEventListener('click',function(e){ e.preventDefault(); stopAp(); goTo(cur-1); startAp(); });
-    if(next) next.addEventListener('click',function(e){ e.preventDefault(); stopAp(); goTo(cur+1); startAp(); });
-    dots.forEach(function(d){ d.addEventListener('click',function(){ stopAp(); goTo(parseInt(this.dataset.index)); startAp(); }); });
-
-    var mw=wrap.querySelector('.eg-tg-main-wrap');
-    var tx=0;
-    if(mw){
-        mw.addEventListener('touchstart',function(e){ tx=e.changedTouches[0].screenX; },{passive:true});
-        mw.addEventListener('touchend',function(e){ var d=tx-e.changedTouches[0].screenX; if(Math.abs(d)>40){ stopAp(); goTo(d>0?cur+1:cur-1); startAp(); } });
+    function syncLb() {
+        var lb = document.getElementById(wid + '-lb');
+        if (!lb) return;
+        var img = lb.querySelector('.eg-tg-lb-img');
+        var cnt = lb.querySelector('.eg-tg-lb-counter');
+        if (img) img.src = slides[cur].querySelector('img').src;
+        if (cnt) cnt.textContent = (cur + 1) + ' / ' + total;
     }
 
-    var lb=document.getElementById(wid+'-lb');
-    var openBtn=wrap.querySelector('.eg-tg-lb-open');
-    if(lb&&openBtn){
-        var lbClose=lb.querySelector('.eg-tg-lb-close');
-        var lbP=lb.querySelector('.eg-tg-lb-prev');
-        var lbN=lb.querySelector('.eg-tg-lb-next');
-        openBtn.addEventListener('click',function(e){ e.preventDefault(); lb.classList.add('open'); document.body.style.overflow='hidden'; stopAp(); syncLb(); });
-        function closeLb(){ lb.classList.remove('open'); document.body.style.overflow=''; startAp(); }
-        if(lbClose) lbClose.addEventListener('click',closeLb);
-        lb.addEventListener('click',function(e){ if(e.target===lb) closeLb(); });
-        if(lbP) lbP.addEventListener('click',function(){ goTo(cur-1); });
-        if(lbN) lbN.addEventListener('click',function(){ goTo(cur+1); });
-        document.addEventListener('keydown',function(e){
-            if(!lb.classList.contains('open')) return;
-            if(e.key==='Escape') closeLb();
-            if(e.key==='ArrowLeft') goTo(cur-1);
-            if(e.key==='ArrowRight') goTo(cur+1);
+    function startAp() {
+        if (!autoplay || total <= 1) return;
+        timer = setInterval(function() {
+            goTo(cur + 1);
+        }, apSpeed);
+    }
+
+    function stopAp() {
+        if (timer) {
+            clearInterval(timer);
+            timer = null;
+        }
+    }
+
+    if (prev) prev.addEventListener('click', function(e) {
+        e.preventDefault();
+        stopAp();
+        goTo(cur - 1);
+        startAp();
+    });
+    if (next) next.addEventListener('click', function(e) {
+        e.preventDefault();
+        stopAp();
+        goTo(cur + 1);
+        startAp();
+    });
+    dots.forEach(function(d) {
+        d.addEventListener('click', function() {
+            stopAp();
+            goTo(parseInt(this.dataset.index));
+            startAp();
+        });
+    });
+
+    var mw = wrap.querySelector('.eg-tg-main-wrap');
+    var tx = 0;
+    if (mw) {
+        mw.addEventListener('touchstart', function(e) {
+            tx = e.changedTouches[0].screenX;
+        }, {
+            passive: true
+        });
+        mw.addEventListener('touchend', function(e) {
+            var d = tx - e.changedTouches[0].screenX;
+            if (Math.abs(d) > 40) {
+                stopAp();
+                goTo(d > 0 ? cur + 1 : cur - 1);
+                startAp();
+            }
+        });
+    }
+
+    var lb = document.getElementById(wid + '-lb');
+    var openBtn = wrap.querySelector('.eg-tg-lb-open');
+    if (lb && openBtn) {
+        var lbClose = lb.querySelector('.eg-tg-lb-close');
+        var lbP = lb.querySelector('.eg-tg-lb-prev');
+        var lbN = lb.querySelector('.eg-tg-lb-next');
+        openBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            lb.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            stopAp();
+            syncLb();
+        });
+
+        function closeLb() {
+            lb.classList.remove('open');
+            document.body.style.overflow = '';
+            startAp();
+        }
+        if (lbClose) lbClose.addEventListener('click', closeLb);
+        lb.addEventListener('click', function(e) {
+            if (e.target === lb) closeLb();
+        });
+        if (lbP) lbP.addEventListener('click', function() {
+            goTo(cur - 1);
+        });
+        if (lbN) lbN.addEventListener('click', function() {
+            goTo(cur + 1);
+        });
+        document.addEventListener('keydown', function(e) {
+            if (!lb.classList.contains('open')) return;
+            if (e.key === 'Escape') closeLb();
+            if (e.key === 'ArrowLeft') goTo(cur - 1);
+            if (e.key === 'ArrowRight') goTo(cur + 1);
         });
     }
     startAp();

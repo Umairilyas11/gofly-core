@@ -90,22 +90,22 @@ add_action('csf_loaded', function () {
                     'default' => '6 Nights',
                 ),
                 array(
-    'type'    => 'subheading',
-    'content' => esc_html__('Deal Price Override', 'gofly-core'),
-),
-array(
-    'id'   => 'tour_deal_price',
-    'type' => 'number',
-    'title' => esc_html__('Deal Price', 'gofly-core'),
-    'desc' => esc_html__('Overrides the auto-calculated price from packages. Leave blank to use package prices.', 'gofly-core'),
-),
-array(
-    'id'         => 'tour_deal_sale_price',
-    'type'       => 'number',
-    'title'      => esc_html__('Deal Sale Price (optional)', 'gofly-core'),
-    'desc'       => esc_html__('If set and lower than Deal Price, it shows as the discounted price with a strikethrough on the original.', 'gofly-core'),
-    'dependency' => array('tour_deal_price', '!=', ''),
-),
+                    'type'    => 'subheading',
+                    'content' => esc_html__('Deal Price Override', 'gofly-core'),
+                ),
+                array(
+                    'id'   => 'tour_deal_price',
+                    'type' => 'number',
+                    'title' => esc_html__('Deal Price', 'gofly-core'),
+                    'desc' => esc_html__('Overrides the auto-calculated price from packages. Leave blank to use package prices.', 'gofly-core'),
+                ),
+                array(
+                    'id'         => 'tour_deal_sale_price',
+                    'type'       => 'number',
+                    'title'      => esc_html__('Deal Sale Price (optional)', 'gofly-core'),
+                    'desc'       => esc_html__('If set and lower than Deal Price, it shows as the discounted price with a strikethrough on the original.', 'gofly-core'),
+                    'dependency' => array('tour_deal_price', '!=', ''),
+                ),
                 array(
                     'id'      => 'tour_highlights_list',
                     'type'    => 'textarea',
@@ -114,12 +114,12 @@ array(
                     'default' => "Crystal-Clear Waters\nLuxury Overwater Villas\nDolphin Watching",
                 ),
                 array(
-    'id'      => 'tour_excursions_list',
-    'type'    => 'textarea',
-    'title'   => esc_html__('Tour Excursions', 'gofly-core'),
-    'desc'    => esc_html__('Enter each excursion on a new line. Wrap text in <strong> to make it a heading (bullet icon hidden).', 'gofly-core'),
-    'default' => "Snorkeling Trip\n<strong>Water Activities</strong>\nSunset Cruise",
-),
+                    'id'      => 'tour_excursions_list',
+                    'type'    => 'textarea',
+                    'title'   => esc_html__('Tour Excursions', 'gofly-core'),
+                    'desc'    => esc_html__('Enter each excursion on a new line. Wrap text in <strong> to make it a heading (bullet icon hidden).', 'gofly-core'),
+                    'default' => "Snorkeling Trip\n<strong>Water Activities</strong>\nSunset Cruise",
+                ),
                 array(
                     'id'          => 'tour_experience_select',
                     'type'        => 'select',
@@ -807,6 +807,62 @@ CSF::createSection("EGNS_TOUR_META_ID", array(
                     'tour_accom_link'  => array('url' => '#', 'text' => 'View', 'target' => '_blank'),
                 ),
             ),
+        ),
+
+    ),
+));
+// Tour Info (icon grid widget)
+CSF::createSection("EGNS_TOUR_META_ID", array(
+    'parent' => 'tour_meta_option',
+    'title'  => esc_html__('Tour Info', 'gofly-core'),
+    'fields' => array(
+
+        array(
+            'type'    => 'subheading',
+            'content' => esc_html__('Tour Info (Icon Grid)', 'gofly-core'),
+        ),
+
+        array(
+            'id'          => 'tour_info_accommodation',
+            'type'        => 'text',
+            'title'       => esc_html__('Accommodation', 'gofly-core'),
+            'placeholder' => esc_html__('e.g. 5 Star Hotel', 'gofly-core'),
+            'default'     => esc_html__('5 Star Hotel', 'gofly-core'),
+        ),
+        array(
+            'id'          => 'tour_info_meals',
+            'type'        => 'text',
+            'title'       => esc_html__('Meals', 'gofly-core'),
+            'placeholder' => esc_html__('e.g. Breakfast & Dinner', 'gofly-core'),
+            'default'     => esc_html__('Breakfast & Dinner', 'gofly-core'),
+        ),
+        array(
+            'id'          => 'tour_info_transportation',
+            'type'        => 'text',
+            'title'       => esc_html__('Transportation', 'gofly-core'),
+            'placeholder' => esc_html__('e.g. Taxi, Car', 'gofly-core'),
+            'default'     => esc_html__('Taxi, Car', 'gofly-core'),
+        ),
+        array(
+            'id'          => 'tour_info_language',
+            'type'        => 'text',
+            'title'       => esc_html__('Language', 'gofly-core'),
+            'placeholder' => esc_html__('e.g. English, Spanish', 'gofly-core'),
+            'default'     => esc_html__('English, Spanish', 'gofly-core'),
+        ),
+        array(
+            'id'          => 'tour_info_season',
+            'type'        => 'text',
+            'title'       => esc_html__('Season', 'gofly-core'),
+            'placeholder' => esc_html__('e.g. Winter Season', 'gofly-core'),
+            'default'     => esc_html__('Winter Season', 'gofly-core'),
+        ),
+        array(
+            'id'          => 'tour_info_category',
+            'type'        => 'text',
+            'title'       => esc_html__('Category', 'gofly-core'),
+            'placeholder' => esc_html__('e.g. Adventure', 'gofly-core'),
+            'default'     => esc_html__('Adventure', 'gofly-core'),
         ),
 
     ),

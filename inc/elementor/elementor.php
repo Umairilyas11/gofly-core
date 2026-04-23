@@ -188,6 +188,7 @@ if (!class_exists('Egns_Elementor')) {
 				'tour-excursions',
 				'tour-destination',
 				'tour-accommodation',
+				'tour-info',  
 				// Visa Single 
 				'visa-critaria-tab',
 				// Experience Single 
